@@ -518,14 +518,20 @@
     .line 129
     iget-object v7, v4, Lid/wealthstock/viralclip/InnertubeResolver$Source;->audioUrl:Ljava/lang/String;
 
-    invoke-static {v0, v2, v7}, Lid/wealthstock/viralclip/ClipPipeline;->audioSource(Ljava/lang/String;ILjava/lang/String;)Lid/wealthstock/viralclip/MediaDownloader$FreshUrl;
+    # Get proxied audio URL
+    invoke-static {v7}, Lid/wealthstock/viralclip/InnertubeResolver;->proxyUrl(Ljava/lang/String;)Ljava/lang/String;
+    move-result-object v7
+
 
     move-result-object v7
 
     .line 130
     iget-object v8, v4, Lid/wealthstock/viralclip/InnertubeResolver$Source;->videoUrl:Ljava/lang/String;
 
-    invoke-static {v0, v2, v8}, Lid/wealthstock/viralclip/ClipPipeline;->videoSource(Ljava/lang/String;ILjava/lang/String;)Lid/wealthstock/viralclip/MediaDownloader$FreshUrl;
+    # Get proxied video URL
+    invoke-static {v8}, Lid/wealthstock/viralclip/InnertubeResolver;->proxyUrl(Ljava/lang/String;)Ljava/lang/String;
+    move-result-object v8
+
 
     move-result-object v0
 

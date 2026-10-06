@@ -27,7 +27,21 @@
 
 .field private static final MIN_HEIGHT:I = 0x2d0
 
-.field private static final PLAYER:Ljava/lang/String; = "https://www.youtube.com/youtubei/v1/player?key=AIzaSyD-PLACEHOLDER"
+.method private static proxyUrl(Ljava/lang/String;)Ljava/lang/String;
+.locals 2
+const-string v0, "http://YOUR_SERVER_HOST:5000/extract?url="
+invoke-virtual {p0}, Ljava/lang/String;->toString()Ljava/lang/String;
+move-result-object v1
+new-instance v2, Ljava/lang/StringBuilder;
+invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+move-result-object v2
+invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+move-result-object v2
+invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+move-result-object v0
+return-object v0
+.end method
 
 .field private static final SPAN:Ljava/util/regex/Pattern;
 

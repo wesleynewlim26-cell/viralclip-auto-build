@@ -15,13 +15,6 @@ jobs:
       - name: Install yt-dlp
         run: |
           python3 -m pip install --upgrade yt-dlp
-      - name: Ensure assets folder
-        run: |
-          mkdir -p assets
-
-      - name: Download sample video with yt-dlp
-        run: |
-          yt-dlp -f bestvideo+bestaudio -o assets/sample_video.mp4 "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
 
           
       - name: Install Apktool & Build-Tools
@@ -42,6 +35,13 @@ jobs:
       - name: Sign APK
         run: |
           apksigner sign --ks debug.keystore --ks-key-alias debug --ks-pass pass:android --key-pass pass:android --out viralclip_fixed_signed.apk unsigned.apk
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: viralclip_fixed_signed.apk
+          path: viralclip_fixed_signed.apk
+
           
       - name: Upload APK
         uses: actions/upload-artifact@v4

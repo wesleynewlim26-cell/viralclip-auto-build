@@ -23,19 +23,18 @@ jobs:
           sudo apt-get update && sudo apt-get install -y apksigner
 
 
-      - name: Convert Java libs (OkHttp & Gson) to DEX
+      - name: Compile Java utils (OkHttp, Gson, YouTubeExtractor) to DEX
         run: |
-          # Ensure Android build-tools are installed (default on ubuntu-latest)
-          sudo apt-get update && sudo apt-get install -y build-essential openjdk-11-jdk
-          # Use d8 (part of Android Build Tools) to convert JARs to DEX and merge into a single classes.dex
-          mkdir -p libs && cp libs/*.jar . || true
-          if ls *.jar 1> /dev/null 2>&1; then
-            d8 --output=classes.dex *.jar
-            # Inject the generated classes.dex into the unsigned APK
-            zip -u unsigned.apk classes.dex
-          else
-            echo "No external JARs found, skipping DEX conversion."
-          fi
+          # Install JDK and Android build tools (already present via setup-java)
+          mkdir -p java_build
+          # Compile all Java source files (including YouTubeExtractor) to .class
+          find src/java -name "*.java" > sources.txt
+          javac -d java_build @sources.txt
+          # Convert compiled classes and any JAR libs in libs/ to a single dex file using d8
+          d8 --output=combined.dex $(find java_build -name "*.class") $(find libs -name "*.jar" || true)
+          # Place the dex so apktool can include it (will be merged into classes.dex automatically)
+          cp combined.dex .
+
 
       - name: Generate debug keystore
         run: |

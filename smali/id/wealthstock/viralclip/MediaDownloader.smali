@@ -473,7 +473,7 @@
 
     check-cast p0, Ljava/net/HttpURLConnection;
     :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_5
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_5
     .catchall {:try_start_0 .. :try_end_0} :catchall_3
 
     .line 461
@@ -539,7 +539,7 @@
 
     move-result p4
     :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_3
+    .catch Ljava/lang/Throwable; {:try_start_1 .. :try_end_1} :catch_3
     .catchall {:try_start_1 .. :try_end_1} :catchall_2
 
     .line 468
@@ -600,7 +600,7 @@
 
     move-result-object p4
     :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_3
+    .catch Ljava/lang/Throwable; {:try_start_2 .. :try_end_2} :catch_3
     .catchall {:try_start_2 .. :try_end_2} :catchall_2
 
     .line 475
@@ -611,7 +611,7 @@
 
     invoke-direct {p5, p1, v3}, Ljava/io/RandomAccessFile;-><init>(Ljava/io/File;Ljava/lang/String;)V
     :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_2
+    .catch Ljava/lang/Throwable; {:try_start_3 .. :try_end_3} :catch_2
     .catchall {:try_start_3 .. :try_end_3} :catchall_1
 
     .line 476
@@ -639,7 +639,7 @@
 
     invoke-virtual {p5, p1, v3, v2}, Ljava/io/RandomAccessFile;->write([BII)V
     :try_end_4
-    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_4} :catch_1
+    .catch Ljava/lang/Throwable; {:try_start_4 .. :try_end_4} :catch_1
     .catchall {:try_start_4 .. :try_end_4} :catchall_0
 
     .line 482
@@ -1375,7 +1375,7 @@
 
     invoke-direct {p3, v0}, Ljava/io/BufferedReader;-><init>(Ljava/io/Reader;)V
     :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_5
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_5
     .catchall {:try_start_0 .. :try_end_0} :catchall_1
 
     .line 656
@@ -1437,7 +1437,7 @@
 
     move-result v2
     :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_3
+    .catch Ljava/lang/Throwable; {:try_start_1 .. :try_end_1} :catch_3
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
     .line 669
@@ -1659,7 +1659,7 @@
 
     invoke-direct {p2, v1}, Ljava/io/BufferedReader;-><init>(Ljava/io/Reader;)V
     :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_2
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_2
     .catchall {:try_start_0 .. :try_end_0} :catchall_1
 
     .line 706
@@ -1706,7 +1706,7 @@
 
     aput-boolean v3, v0, v2
     :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+    .catch Ljava/lang/Throwable; {:try_start_1 .. :try_end_1} :catch_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
     .line 708
@@ -1876,7 +1876,7 @@
 
     check-cast p0, Ljava/net/HttpURLConnection;
     :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_1
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     .line 247
@@ -1933,7 +1933,7 @@
     .line 255
     iput-boolean v0, v2, Lid/wealthstock/viralclip/MediaDownloader$Probe;->reachable:Z
     :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    .catch Ljava/lang/Throwable; {:try_start_1 .. :try_end_1} :catch_0
     .catchall {:try_start_1 .. :try_end_1} :catchall_1
 
     .line 256
@@ -2055,7 +2055,7 @@
 
     iput-wide v2, v5, Lid/wealthstock/viralclip/MediaDownloader$Probe;->total:J
     :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_0
+    .catch Ljava/lang/Throwable; {:try_start_2 .. :try_end_2} :catch_0
     .catchall {:try_start_2 .. :try_end_2} :catchall_1
 
     .line 293
@@ -2210,7 +2210,7 @@
 
     check-cast v7, Ljava/net/HttpURLConnection;
     :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_8
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_8
     .catchall {:try_start_0 .. :try_end_0} :catchall_3
 
     .line 534
@@ -2243,7 +2243,7 @@
 
     move-result v0
     :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_7
+    .catch Ljava/lang/Throwable; {:try_start_1 .. :try_end_1} :catch_7
     .catchall {:try_start_1 .. :try_end_1} :catchall_2
 
     .line 540
@@ -2286,7 +2286,7 @@
     :goto_0
     iput-wide v5, v1, Lid/wealthstock/viralclip/MediaDownloader$Fetch;->bytes:J
     :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_0
+    .catch Ljava/lang/Throwable; {:try_start_2 .. :try_end_2} :catch_0
     .catchall {:try_start_2 .. :try_end_2} :catchall_2
 
     .line 543
@@ -2342,7 +2342,7 @@
     :goto_1
     invoke-virtual/range {p1 .. p1}, Ljava/io/File;->delete()Z
     :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_0
+    .catch Ljava/lang/Throwable; {:try_start_3 .. :try_end_3} :catch_0
     .catchall {:try_start_3 .. :try_end_3} :catchall_2
 
     goto :goto_2
@@ -2382,7 +2382,7 @@
 
     move-result-object v5
     :try_end_4
-    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_4} :catch_7
+    .catch Ljava/lang/Throwable; {:try_start_4 .. :try_end_4} :catch_7
     .catchall {:try_start_4 .. :try_end_4} :catchall_2
 
     .line 561
@@ -2391,7 +2391,7 @@
 
     const-string v0, "rw"
     :try_end_5
-    .catch Ljava/lang/Exception; {:try_start_5 .. :try_end_5} :catch_6
+    .catch Ljava/lang/Throwable; {:try_start_5 .. :try_end_5} :catch_6
     .catchall {:try_start_5 .. :try_end_5} :catchall_1
 
     move-object/from16 v14, p1
@@ -2399,7 +2399,7 @@
     :try_start_6
     invoke-direct {v6, v14, v0}, Ljava/io/RandomAccessFile;-><init>(Ljava/io/File;Ljava/lang/String;)V
     :try_end_6
-    .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_6} :catch_5
+    .catch Ljava/lang/Throwable; {:try_start_6 .. :try_end_6} :catch_5
     .catchall {:try_start_6 .. :try_end_6} :catchall_1
 
     .line 562
@@ -2414,7 +2414,7 @@
 
     new-array v0, v0, [B
     :try_end_7
-    .catch Ljava/lang/Exception; {:try_start_7 .. :try_end_7} :catch_4
+    .catch Ljava/lang/Throwable; {:try_start_7 .. :try_end_7} :catch_4
     .catchall {:try_start_7 .. :try_end_7} :catchall_0
 
     .line 566
@@ -2438,7 +2438,7 @@
     move-result v13
     :try_end_8
     .catch Ljava/io/IOException; {:try_start_8 .. :try_end_8} :catch_1
-    .catch Ljava/lang/Exception; {:try_start_8 .. :try_end_8} :catch_4
+    .catch Ljava/lang/Throwable; {:try_start_8 .. :try_end_8} :catch_4
     .catchall {:try_start_8 .. :try_end_8} :catchall_0
 
     .line 578
@@ -2459,7 +2459,7 @@
     :try_start_9
     invoke-virtual {v6, v0, v10, v13}, Ljava/io/RandomAccessFile;->write([BII)V
     :try_end_9
-    .catch Ljava/lang/Exception; {:try_start_9 .. :try_end_9} :catch_4
+    .catch Ljava/lang/Throwable; {:try_start_9 .. :try_end_9} :catch_4
     .catchall {:try_start_9 .. :try_end_9} :catchall_0
 
     .line 583
@@ -2590,7 +2590,7 @@
 
     invoke-interface/range {v8 .. v13}, Lid/wealthstock/viralclip/MediaDownloader$Progress;->onProgress(JJI)V
     :try_end_a
-    .catch Ljava/lang/Exception; {:try_start_a .. :try_end_a} :catch_3
+    .catch Ljava/lang/Throwable; {:try_start_a .. :try_end_a} :catch_3
     .catchall {:try_start_a .. :try_end_a} :catchall_0
 
     .line 600
@@ -2883,7 +2883,7 @@
 
     invoke-direct {v1, p0}, Ljava/io/FileOutputStream;-><init>(Ljava/io/File;)V
     :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_2
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_2
     .catchall {:try_start_0 .. :try_end_0} :catchall_1
 
     .line 741
@@ -2900,7 +2900,7 @@
 
     invoke-virtual {v1, p0}, Ljava/io/FileOutputStream;->write([B)V
     :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    .catch Ljava/lang/Throwable; {:try_start_1 .. :try_end_1} :catch_0
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
     .line 745

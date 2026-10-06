@@ -510,7 +510,7 @@
 
     move-result-object v1
     :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
+    .catch Ljava/lang/Throwable; {:try_start_2 .. :try_end_2} :catch_1
 
     goto :goto_3
 
@@ -929,7 +929,7 @@
 
     move-result-object p0
     :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
 
     return-object p0
 
@@ -1543,7 +1543,7 @@
 
     invoke-direct {v2, v0}, Ljava/io/DataInputStream;-><init>(Ljava/io/InputStream;)V
     :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 342
     :try_start_1
@@ -1583,7 +1583,7 @@
     :try_start_2
     invoke-virtual {v2}, Ljava/io/DataInputStream;->close()V
     :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_0
+    .catch Ljava/lang/Throwable; {:try_start_2 .. :try_end_2} :catch_0
 
     .line 353
     return-object v1
@@ -1635,7 +1635,7 @@
     .line 362
     throw v0
     :try_end_4
-    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_4} :catch_0
+    .catch Ljava/lang/Throwable; {:try_start_4 .. :try_end_4} :catch_0
 
     .line 363
     :catch_0

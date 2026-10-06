@@ -56,7 +56,8 @@
 
 # virtual methods
 .method public get()Ljava/lang/String;
-    .locals 3
+    .locals 4
+
 
     .line 337
     iget-boolean v0, p0, Lid/wealthstock/viralclip/ClipPipeline$4;->first:Z
@@ -100,7 +101,7 @@
 
     iget-object v0, v0, Lid/wealthstock/viralclip/InnertubeResolver$Source;->videoUrl:Ljava/lang/String;
     :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
 
     return-object v0
 

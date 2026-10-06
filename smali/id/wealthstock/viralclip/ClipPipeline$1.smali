@@ -73,7 +73,7 @@
 
     invoke-static {v0, v1, v2, v3, v4}, Lid/wealthstock/viralclip/ClipPipeline;->access$000(Ljava/lang/String;IILjava/io/File;Lid/wealthstock/viralclip/ClipPipeline$Callback;)V
     :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 70
     goto :goto_0

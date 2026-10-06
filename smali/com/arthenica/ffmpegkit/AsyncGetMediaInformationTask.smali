@@ -88,7 +88,7 @@
 
     invoke-interface {v0, v2}, Lcom/arthenica/ffmpegkit/MediaInformationSessionCompleteCallback;->apply(Lcom/arthenica/ffmpegkit/MediaInformationSession;)V
     :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 52
     goto :goto_0
@@ -133,7 +133,7 @@
 
     invoke-interface {v0, v2}, Lcom/arthenica/ffmpegkit/MediaInformationSessionCompleteCallback;->apply(Lcom/arthenica/ffmpegkit/MediaInformationSession;)V
     :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+    .catch Ljava/lang/Throwable; {:try_start_1 .. :try_end_1} :catch_1
 
     .line 62
     goto :goto_1

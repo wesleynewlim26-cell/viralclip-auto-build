@@ -797,7 +797,7 @@
 
     move-result-object v1
     :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
 
     return-object v1
 
@@ -860,7 +860,7 @@
 
     invoke-virtual {p0, v1}, Lcom/arthenica/ffmpegkit/FFmpegSession;->complete(Lcom/arthenica/ffmpegkit/ReturnCode;)V
     :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 663
     .end local v0    # "returnCode":I
@@ -936,7 +936,7 @@
 
     invoke-virtual {p0, v1}, Lcom/arthenica/ffmpegkit/FFprobeSession;->complete(Lcom/arthenica/ffmpegkit/ReturnCode;)V
     :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 680
     .end local v0    # "returnCode":I
@@ -1455,7 +1455,7 @@
     .local v4, "mediaInformation":Lcom/arthenica/ffmpegkit/MediaInformation;
     invoke-virtual {p0, v4}, Lcom/arthenica/ffmpegkit/MediaInformationSession;->setMediaInformation(Lcom/arthenica/ffmpegkit/MediaInformation;)V
     :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 711
     .end local v0    # "returnCodeValue":I
@@ -2227,7 +2227,7 @@
 
     invoke-interface {v8, v2}, Lcom/arthenica/ffmpegkit/LogCallback;->apply(Lcom/arthenica/ffmpegkit/Log;)V
     :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 245
     goto :goto_0
@@ -2271,7 +2271,7 @@
     :try_start_1
     invoke-interface {v8, v2}, Lcom/arthenica/ffmpegkit/LogCallback;->apply(Lcom/arthenica/ffmpegkit/Log;)V
     :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+    .catch Ljava/lang/Throwable; {:try_start_1 .. :try_end_1} :catch_1
 
     .line 258
     goto :goto_1
@@ -3938,7 +3938,7 @@
 
     invoke-interface {v0, v1}, Lcom/arthenica/ffmpegkit/StatisticsCallback;->apply(Lcom/arthenica/ffmpegkit/Statistics;)V
     :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 351
     goto :goto_0
@@ -3980,7 +3980,7 @@
     :try_start_1
     invoke-interface {v4, v1}, Lcom/arthenica/ffmpegkit/StatisticsCallback;->apply(Lcom/arthenica/ffmpegkit/Statistics;)V
     :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+    .catch Ljava/lang/Throwable; {:try_start_1 .. :try_end_1} :catch_1
 
     .line 362
     goto :goto_1

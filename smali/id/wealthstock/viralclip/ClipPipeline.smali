@@ -164,7 +164,7 @@
 
     check-cast p0, Ljava/net/HttpURLConnection;
     :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 258
     const/16 v2, 0x3a98
@@ -202,7 +202,7 @@
     :try_start_2
     invoke-virtual {p0}, Ljava/net/HttpURLConnection;->disconnect()V
     :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_0
+    .catch Ljava/lang/Throwable; {:try_start_2 .. :try_end_2} :catch_0
 
     .line 263
     return-wide v0
@@ -255,13 +255,22 @@
     .line 269
     throw v2
     :try_end_4
-    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_4} :catch_0
+    .catch Ljava/lang/Throwable; {:try_start_4 .. :try_end_4} :catch_0
 
     .line 270
     :catch_0
-    move-exception p0
-
-    .line 271
+    move-exception v1
+    # Show error via Toast
+    const/4 v2, 0x1
+    invoke-virtual {v1}, Ljava/lang/Throwable;->getMessage()Ljava/lang/String;
+    move-result-object v3
+    const-string v4, "Clip error: "
+    invoke-virtual {v4, v3}, Ljava/lang/String;->concat(Ljava/lang/String;)Ljava/lang/String;
+    move-result-object v4
+    invoke-static {p0, v4, v2}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+    move-result-object v4
+    invoke-virtual {v4}, Landroid/widget/Toast;->show()V
+    const/4 p0, 0x0
     return-wide v0
 .end method
 

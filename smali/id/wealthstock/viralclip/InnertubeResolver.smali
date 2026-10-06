@@ -1854,11 +1854,6 @@ move-result-object p0
 return-object p0
 :catch_0
 move-exception v1
-const-string v2, "ViralClip"
-invoke-virtual {v1}, Ljava/lang/Throwable;->getMessage()Ljava/lang/String;
-move-result-object v3
-invoke-static {v2, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-pop
 const/4 p0, 0x0
 return-object p0
 

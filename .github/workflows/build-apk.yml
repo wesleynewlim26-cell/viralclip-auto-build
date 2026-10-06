@@ -26,17 +26,12 @@ jobs:
           sudo apt-get update && sudo apt-get install -y apksigner
 
 
-      - name: Compile Java utils (OkHttp, Gson, YouTubeExtractor) to DEX
+      - name: Disassemble combined.dex to smali and merge
         run: |
-          # Install JDK and Android build tools (already present via setup-java)
-          mkdir -p java_build
-          # Compile all Java source files (including YouTubeExtractor) to .class
-          find src/java -name "*.java" > sources.txt
-          javac -d java_build @sources.txt
-          # Convert compiled classes and any JAR libs in libs/ to a single dex file using d8
-          d8 --output=combined.dex $(find java_build -name "*.class") $(find libs -name "*.jar" || true)
-          # Place the dex so apktool can include it (will be merged into classes.dex automatically)
-          cp combined.dex .
+          wget -q https://bitbucket.org/JesusFreke/smali/downloads/baksmali-2.5.2.jar -O baksmali.jar
+          java -jar baksmali.jar d combined.dex -o smali_classes2
+          # Merge generated smali into the main smali directory for apktool
+          cp -r smali_classes2/* smali/
 
 
       - name: Generate debug keystore

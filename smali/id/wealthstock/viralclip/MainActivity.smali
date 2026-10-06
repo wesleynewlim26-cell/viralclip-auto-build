@@ -1292,22 +1292,23 @@
 .end method
 
 .method private start()V
-    .locals 6
+    .locals 7
 
     .line 175
     iget-object v0, p0, Lid/wealthstock/viralclip/MainActivity;->urlField:Landroid/widget/EditText;
-
+    if-eqz v0, :cond_no_field
     invoke-virtual {v0}, Landroid/widget/EditText;->getText()Landroid/text/Editable;
-
+    move-result-object v1
+    invoke-virtual {v1}, Ljava/lang/Object;->toString()Ljava/lang/String;
+    move-result-object v1
+    invoke-virtual {v1}, Ljava/lang/String;->trim()Ljava/lang/String;
     move-result-object v0
-
-    invoke-virtual {v0}, Ljava/lang/Object;->toString()Ljava/lang/String;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Ljava/lang/String;->trim()Ljava/lang/String;
-
-    move-result-object v0
+    goto :after_field_check
+    :cond_no_field
+    const-string v0, "Input field missing"
+    invoke-direct {p0, v0}, Lid/wealthstock/viralclip/MainActivity;->toast(Ljava/lang/String;)V
+    return-void
+    :after_field_check
 
     .line 176
     invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z

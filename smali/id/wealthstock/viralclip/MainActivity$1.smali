@@ -39,6 +39,7 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
+# cleaned try-catch
 .end method
 
 
@@ -50,4 +51,5 @@ iget-object v0, p0, Lid/wealthstock/viralclip/MainActivity$1;->this$0:Lid/wealth
 invoke-static {v0}, Lid/wealthstock/viralclip/MainActivity;->access$000(Lid/wealthstock/viralclip/MainActivity;)V
 .line 113
 return-void
+# cleaned try-catch
 .end method

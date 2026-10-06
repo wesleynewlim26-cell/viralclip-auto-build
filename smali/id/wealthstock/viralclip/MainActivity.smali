@@ -1527,9 +1527,7 @@
     invoke-direct {p0}, Lid/wealthstock/viralclip/MainActivity;->buildUi()V
 
     .line 61
-    new-instance v0, Lid/wealthstock/viralclip/MainActivity$ExceptionHandler;
-    invoke-direct {v0, p0}, Lid/wealthstock/viralclip/MainActivity$ExceptionHandler;-><init>(Lid/wealthstock/viralclip/MainActivity;)V
-    invoke-static {v0}, Ljava/lang/Thread;->setDefaultUncaughtExceptionHandler(Ljava/lang/Thread$UncaughtExceptionHandler;)V
+    // ExceptionHandler removed
     .line 62
     return-void
 .end method

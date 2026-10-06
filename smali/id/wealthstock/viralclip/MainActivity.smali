@@ -43,7 +43,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 2
+    .locals 5
 
     .line 37
     invoke-direct {p0}, Landroid/app/Activity;-><init>()V
@@ -1111,7 +1111,7 @@
 .end method
 
 .method private play(Ljava/io/File;)V
-    .locals 2
+    .locals 5
 
     .line 414
     invoke-static {p1}, Lid/wealthstock/viralclip/MainActivity;->uriFor(Ljava/io/File;)Landroid/net/Uri;
@@ -1159,7 +1159,7 @@
 .end method
 
 .method private setBusy(Z)V
-    .locals 2
+    .locals 5
 
     .line 322
     iget-object v0, p0, Lid/wealthstock/viralclip/MainActivity;->busy:Landroid/view/View;
@@ -1203,7 +1203,7 @@
 .end method
 
 .method private share(Ljava/io/File;)V
-    .locals 2
+    .locals 5
 
     .line 427
     invoke-static {p1}, Lid/wealthstock/viralclip/MainActivity;->uriFor(Ljava/io/File;)Landroid/net/Uri;
@@ -1463,7 +1463,7 @@
 .end method
 
 .method static uriFor(Ljava/io/File;)Landroid/net/Uri;
-    .locals 2
+    .locals 5
 
     .line 406
     new-instance v0, Landroid/net/Uri$Builder;
@@ -1505,7 +1505,7 @@
 
 # virtual methods
 .method protected onCreate(Landroid/os/Bundle;)V
-    .locals 2
+    .locals 5
 
     .line 58
     invoke-super {p0, p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V
@@ -1527,5 +1527,9 @@
     invoke-direct {p0}, Lid/wealthstock/viralclip/MainActivity;->buildUi()V
 
     .line 61
+    new-instance v0, Lid/wealthstock/viralclip/MainActivity$ExceptionHandler;
+    invoke-direct {v0, p0}, Lid/wealthstock/viralclip/MainActivity$ExceptionHandler;-><init>(Lid/wealthstock/viralclip/MainActivity;)V
+    invoke-static {v0}, Ljava/lang/Thread;->setDefaultUncaughtExceptionHandler(Ljava/lang/Thread$UncaughtExceptionHandler;)V
+    .line 62
     return-void
 .end method

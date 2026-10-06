@@ -40,11 +40,14 @@
 
 # virtual methods
 .method public onClick(Landroid/view/View;)V
-    .locals 2
-    .line 112
-    iget-object v0, p0, Lid/wealthstock/viralclip/MainActivity$1;->this$0:Lid/wealthstock/viralclip/MainActivity;
-    const-string v1, "Tombol OK"
-    invoke-direct {v0, v1}, Lid/wealthstock/viralclip/MainActivity;->toast(Ljava/lang/String;)V
-    .line 113
-    return-void
+.locals 3
+.line 112
+iget-object v0, p0, Lid/wealthstock/viralclip/MainActivity$1;->this$0:Lid/wealthstock/viralclip/MainActivity;
+const-string v1, "DEBUG-1 tombol aman"
+const/4 v2, 0x0
+invoke-static {v0, v1, v2}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+move-result-object v0
+invoke-virtual {v0}, Landroid/widget/Toast;->show()V
+.line 113
+return-void
 .end method

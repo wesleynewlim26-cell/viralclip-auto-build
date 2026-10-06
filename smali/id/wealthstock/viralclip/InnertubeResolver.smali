@@ -27,7 +27,7 @@
 
 .field private static final MIN_HEIGHT:I = 0x2d0
 
-.field private static final PLAYER:Ljava/lang/String; = "https://www.youtube.com/youtubei/v1/player"
+.field private static final PLAYER:Ljava/lang/String; = "https://www.youtube.com/youtubei/v1/player?key=AIzaSyD-PLACEHOLDER"
 
 .field private static final SPAN:Ljava/util/regex/Pattern;
 
@@ -2186,7 +2186,7 @@
 
     aget-object p3, p3, v1
 
-    const-string v1, "https://www.youtube.com/youtubei/v1/player"
+    const-string v1, "https://www.youtube.com/youtubei/v1/player?key=AIzaSyD-PLACEHOLDER"
 
     invoke-static {v1, v0, p3}, Lid/wealthstock/viralclip/InnertubeResolver;->post(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 

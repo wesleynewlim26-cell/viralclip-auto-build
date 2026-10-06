@@ -18,13 +18,10 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
-      - name: Install Apktool
+      - name: Install apksigner
         run: |
-          wget -q -O apktool.jar https://github.com/iBotPeaches/Apktool/releases/download/v2.9.3/apktool_2.9.3.jar
-          sudo mv apktool.jar /usr/local/bin/apktool.jar
-          sudo chmod +x /usr/local/bin/apktool.jar
-          echo -e "#!/usr/bin/env sh\njava -jar /usr/local/bin/apktool.jar \$@" | sudo tee /usr/local/bin/apktool > /dev/null
-          sudo chmod +x /usr/local/bin/apktool
+          sudo apt-get update && sudo apt-get install -y apksigner
+
 
       - name: Build APK with Apktool
         run: |

@@ -27,10 +27,12 @@
 
 .field private static final MIN_HEIGHT:I = 0x2d0
 
+    .method private static proxyUrl(Ljava/lang/String;)Ljava/lang/String;
     .locals 1
     .line 31
     move-object v0, p0
     return-object v0
+    .end method
 
 
 .field private static final SPAN:Ljava/util/regex/Pattern;

@@ -1527,7 +1527,7 @@
     invoke-direct {p0}, Lid/wealthstock/viralclip/MainActivity;->buildUi()V
 
     .line 61
-    // ExceptionHandler removed
+    # ExceptionHandler removed
     .line 62
     return-void
 .end method

@@ -1,10 +1,9 @@
-.class Lid/wealthstock/viralclip/MainActivity$1;
+ .class Lid/wealthstock/viralclip/MainActivity$1;
 .super Ljava/lang/Object;
 .source "MainActivity.java"
 
 # interfaces
 .implements Landroid/view/View$OnClickListener;
-
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
@@ -16,10 +15,8 @@
     name = null
 .end annotation
 
-
 # instance fields
 .field final synthetic this$0:Lid/wealthstock/viralclip/MainActivity;
-
 
 # direct methods
 .method constructor <init>(Lid/wealthstock/viralclip/MainActivity;)V
@@ -39,17 +36,15 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
-
 .end method
-
 
 # virtual methods
 .method public onClick(Landroid/view/View;)V
-.locals 0
-.line 112
-iget-object v0, p0, Lid/wealthstock/viralclip/MainActivity$1;->this$0:Lid/wealthstock/viralclip/MainActivity;
-invoke-static {v0}, Lid/wealthstock/viralclip/MainActivity;->access$000(Lid/wealthstock/viralclip/MainActivity;)V
-.line 113
-return-void
-
+    .locals 2
+    .line 112
+    iget-object v0, p0, Lid/wealthstock/viralclip/MainActivity$1;->this$0:Lid/wealthstock/viralclip/MainActivity;
+    const-string v1, "Tombol OK"
+    invoke-direct {v0, v1}, Lid/wealthstock/viralclip/MainActivity;->toast(Ljava/lang/String;)V
+    .line 113
+    return-void
 .end method

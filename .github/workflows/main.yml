@@ -43,3 +43,9 @@ jobs:
         run: |
           apksigner sign --ks debug.keystore --ks-key-alias debug --ks-pass pass:android --key-pass pass:android --out viralclip_fixed_signed.apk unsigned.apk
           
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: viralclip_fixed_signed
+          path: viralclip_fixed_signed.apk
+          

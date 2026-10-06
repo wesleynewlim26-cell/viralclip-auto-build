@@ -1526,7 +1526,5 @@
     .line 60
     invoke-direct {p0}, Lid/wealthstock/viralclip/MainActivity;->buildUi()V
     .line 61
-    invoke-static {p0}, Lid/wealthstock/viralclip/utils/CrashLogger;->init(Landroid/content/Context;)V
-    .line 62
     return-void
 .end method

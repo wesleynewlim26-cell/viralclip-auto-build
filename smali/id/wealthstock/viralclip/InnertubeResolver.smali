@@ -27,12 +27,6 @@
 
 .field private static final MIN_HEIGHT:I = 0x2d0
 
-    .method private static proxyUrl(Ljava/lang/String;)Ljava/lang/String;
-    .locals 1
-    .line 31
-    move-object v0, p0
-    return-object v0
-    .end method
 
 
 .field private static final SPAN:Ljava/util/regex/Pattern;
@@ -1843,21 +1837,25 @@
 .end method
 
 .method public static resolve(Ljava/lang/String;Ljava/lang/String;)Lid/wealthstock/viralclip/InnertubeResolver$Source;
-    .locals 1
-    .annotation system Ldalvik/annotation/Throws;
-        value = {
-            Lid/wealthstock/viralclip/InnertubeResolver$ResolveException;
-        }
-    .end annotation
+.locals 2
+.annotation system Ldalvik/annotation/Throws;
+    value = {
+        Lid/wealthstock/viralclip/InnertubeResolver$ResolveException;
+    }
+.end annotation
 
-    .line 184
-    const/16 v0, 0x438
-
-    invoke-static {p0, p1, v0}, Lid/wealthstock/viralclip/InnertubeResolver;->resolve(Ljava/lang/String;Ljava/lang/String;I)Lid/wealthstock/viralclip/InnertubeResolver$Source;
-
-    move-result-object p0
-
-    return-object p0
+.line 184
+const/16 v0, 0x438
+:try_start_0
+invoke-static {p0, p1, v0}, Lid/wealthstock/viralclip/InnertubeResolver;->resolve(Ljava/lang/String;Ljava/lang/String;I)Lid/wealthstock/viralclip/InnertubeResolver$Source;
+move-result-object p0
+:try_end_0
+.catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+return-object p0
+:catch_0
+move-exception v1
+const/4 p0, 0x0
+return-object p0
 .end method
 
 .method public static resolve(Ljava/lang/String;Ljava/lang/String;I)Lid/wealthstock/viralclip/InnertubeResolver$Source;

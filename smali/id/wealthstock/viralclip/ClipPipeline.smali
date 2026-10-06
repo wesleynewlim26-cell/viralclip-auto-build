@@ -429,20 +429,20 @@
     .line 107
     :cond_2
     iget-object v7, v4, Lid/wealthstock/viralclip/InnertubeResolver$Source;->audioUrl:Ljava/lang/String;
-
+    if-eqz v7, :audio_null
     invoke-virtual {v7}, Ljava/lang/String;->isEmpty()Z
-
     move-result v7
-
     if-eqz v7, :cond_3
-
-    .line 108
-    const-string v0, "Video ini tidak punya trek suara. Coba video lain."
-
+    const-string v0, "Audio URL kosong"
     invoke-interface {v3, v0}, Lid/wealthstock/viralclip/ClipPipeline$Callback;->onFailed(Ljava/lang/String;)V
-
-    .line 110
     return-void
+    :audio_null
+    const-string v0, "Audio URL null"
+    invoke-interface {v3, v0}, Lid/wealthstock/viralclip/ClipPipeline$Callback;->onFailed(Ljava/lang/String;)V
+    return-void
+
+
+
 
     .line 120
     :cond_3
@@ -518,20 +518,23 @@
     .line 129
     iget-object v7, v4, Lid/wealthstock/viralclip/InnertubeResolver$Source;->audioUrl:Ljava/lang/String;
 
-    # Get proxied audio URL
-    nop
-
-
-    move-result-object v7
 
     .line 130
     iget-object v8, v4, Lid/wealthstock/viralclip/InnertubeResolver$Source;->videoUrl:Ljava/lang/String;
+    if-eqz v8, :video_null
+    invoke-virtual {v8}, Ljava/lang/String;->isEmpty()Z
+    move-result v0
+    if-eqz v0, :continue_video
+    const-string v0, "Video URL kosong"
+    invoke-interface {v3, v0}, Lid/wealthstock/viralclip/ClipPipeline$Callback;->onFailed(Ljava/lang/String;)V
+    return-void
+    :video_null
+    const-string v0, "Video URL null"
+    invoke-interface {v3, v0}, Lid/wealthstock/viralclip/ClipPipeline$Callback;->onFailed(Ljava/lang/String;)V
+    return-void
+    :continue_video
 
-    # Get proxied video URL
-    nop
 
-
-    move-result-object v0
 
     .line 132
     iget-wide v11, v4, Lid/wealthstock/viralclip/InnertubeResolver$Source;->audioBytes:J

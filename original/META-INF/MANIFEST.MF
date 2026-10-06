@@ -1,0 +1,56 @@
+Manifest-Version: 1.0
+
+Name: AndroidManifest.xml
+SHA-256-Digest: 5P2m2pTIE9ixrL3tR+SAxwaJMwE7Dh3RhRwzMm7J8MU=
+
+Name: classes.dex
+SHA-256-Digest: gz8eTaOpLuEwGtFTpndEeTE44SHQZZEYzyjg3PsChSk=
+
+Name: lib/arm64-v8a/libavcodec.so
+SHA-256-Digest: zwdwHZKg9RTspyQuERVqPHWE+hyIRNrKHK+ABvTxpG8=
+
+Name: lib/arm64-v8a/libavdevice.so
+SHA-256-Digest: Fc8/jmhzEduhpjJgMxwDsqGkF2D5yhW6Vc0EyTGjYYA=
+
+Name: lib/arm64-v8a/libavfilter.so
+SHA-256-Digest: meA2LKw42IRt51wXgLk6PtPSakjZHYdU4REgOQjt9Gw=
+
+Name: lib/arm64-v8a/libavformat.so
+SHA-256-Digest: MN8iJoU6OJHP/+iMrMbnZi4sryfAwxmzgQ7kA1xmQZk=
+
+Name: lib/arm64-v8a/libavutil.so
+SHA-256-Digest: 4IUGLPUHKyoRW1Jfnq08l0ZTTeuHQIXuUvP1WUEY4ZM=
+
+Name: lib/arm64-v8a/libc++_shared.so
+SHA-256-Digest: Pm1SkUf/1mvTH6uFyJArUmq9HAbkNVTOZLl1GeJV5LM=
+
+Name: lib/arm64-v8a/libffmpegkit.so
+SHA-256-Digest: tgy9ItDwIIbQg1a687j/YgV6fGevffcv/u3Kus8orwY=
+
+Name: lib/arm64-v8a/libffmpegkit_abidetect.so
+SHA-256-Digest: XNojz45stm31WRobaxFycW+wiK7j+snkfbklBfmVrb4=
+
+Name: lib/arm64-v8a/libswresample.so
+SHA-256-Digest: b+Bnj1ToOfdjxcW00yB6pi96RXIRLE9ZfD5UOqG+0Ak=
+
+Name: lib/arm64-v8a/libswscale.so
+SHA-256-Digest: r0BnIKVRbvvEs++QE34Lnk3DWNN+W63ToGkwucO9sQg=
+
+Name: res/mipmap-hdpi-v4/ic_launcher.png
+SHA-256-Digest: LxOTtmn7QCirc/OFLV5p9I4t3pNQCH3J7A2Lo+vhJLM=
+
+Name: res/mipmap-mdpi-v4/ic_launcher.png
+SHA-256-Digest: bUc79gWlnnP3zKi0D23rU0bxCdLsMS034gCf5txu97Q=
+
+Name: res/mipmap-xhdpi-v4/ic_launcher.png
+SHA-256-Digest: iT1fq1IOnp1XEluGJhSK/6hOl961spa9BBt5xafdR3k=
+
+Name: res/mipmap-xxhdpi-v4/ic_launcher.png
+SHA-256-Digest: I8NMfx4jPogUNrECk50wcIeR77eTkhMSgQND+hiN/Tg=
+
+Name: res/mipmap-xxxhdpi-v4/ic_launcher.png
+SHA-256-Digest: UxZ1JyFTWMARvaZ0Uq9+l6zqm5VBYLPnSaKjiPUn0n4=
+
+Name: resources.arsc
+SHA-256-Digest: npX0MHuvrzUqerX3aJCqBizMV+Xq+mnG+joRtb/dJC8=
+

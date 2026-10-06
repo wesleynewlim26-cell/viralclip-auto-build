@@ -1,0 +1,59 @@
+Signature-Version: 1.0
+Created-By: 1.0 (Android)
+SHA-256-Digest-Manifest: EKVLSXyFcOk04972DS5o/KzsFDJCfbozst39Nhyzbjc=
+X-Android-APK-Signed: 2, 3
+
+Name: AndroidManifest.xml
+SHA-256-Digest: Yp4IBz3cR4VLUBAgLG+eMJWngQtGkZclc5vXwQp0NrE=
+
+Name: classes.dex
+SHA-256-Digest: w8WWYXzZ2aIHr0VquvihNLEljnxsZsZdWv+B5c1NykE=
+
+Name: lib/arm64-v8a/libavcodec.so
+SHA-256-Digest: PKCrchhKRgS4mGwRNIwov1nJubIumNsTLEoaPmD5sIg=
+
+Name: lib/arm64-v8a/libavdevice.so
+SHA-256-Digest: 0zZHM4eFUkHCp8scRmTfEtIxw1f7fS5PY2KJgSCm7/c=
+
+Name: lib/arm64-v8a/libavfilter.so
+SHA-256-Digest: fRkhB2Hj2eVedoftFmXxWw2FL0TE64xN1FwEu7xKCHs=
+
+Name: lib/arm64-v8a/libavformat.so
+SHA-256-Digest: zw0+8l603tqukfWb8yQ9dMykOhcqU4J4s8UjWc9gKho=
+
+Name: lib/arm64-v8a/libavutil.so
+SHA-256-Digest: Osd3OlJjNlWaDb/0J3AgSGckGoTi++ZW6T0oA8go8HQ=
+
+Name: lib/arm64-v8a/libc++_shared.so
+SHA-256-Digest: 06wqVYvjEsRObPZeZ0AdvNvgF/KlDYPt+R/KSsEzcTM=
+
+Name: lib/arm64-v8a/libffmpegkit.so
+SHA-256-Digest: fbgIUThSVW7mLud3iqGZeTorPrG3y2L9eHe2GxYJcl8=
+
+Name: lib/arm64-v8a/libffmpegkit_abidetect.so
+SHA-256-Digest: 8k6/a6J7KpW6u9LWvgr8Qyrzq2+oWxy+fat14GQ49ts=
+
+Name: lib/arm64-v8a/libswresample.so
+SHA-256-Digest: 7LPDyo/pn4zXRmoeeFyzEvlZLBsnTKBNKiNZ1g5yShw=
+
+Name: lib/arm64-v8a/libswscale.so
+SHA-256-Digest: LeWE7Uu+DmjGnEdamBhzh3Ymk3NwMAmY5+5+CWnd5mY=
+
+Name: res/mipmap-hdpi-v4/ic_launcher.png
+SHA-256-Digest: ryNium5u6yiwQom8nn934i36RHKjEZx8wXdLYLOkhe8=
+
+Name: res/mipmap-mdpi-v4/ic_launcher.png
+SHA-256-Digest: xjQxvD70A6/a24BNb2xynj9snhKRqRBcveCJ2HmdXmk=
+
+Name: res/mipmap-xhdpi-v4/ic_launcher.png
+SHA-256-Digest: vF3bpESeGDzC+b5FCk/8i5fH0LH5lUjtuH58sHRsMX0=
+
+Name: res/mipmap-xxhdpi-v4/ic_launcher.png
+SHA-256-Digest: e/GzpUVe02VabUzAUiUnZY3vGvtPgkWcozPVA3HOleo=
+
+Name: res/mipmap-xxxhdpi-v4/ic_launcher.png
+SHA-256-Digest: Qweaf6ysHfJRfJ5o03s9dMxCsBGowmhJUvoWVVoeF/s=
+
+Name: resources.arsc
+SHA-256-Digest: /tZB5PQ3wC0QH/kTDzffbddJylQcTp0qEoXKZs7uxZE=
+

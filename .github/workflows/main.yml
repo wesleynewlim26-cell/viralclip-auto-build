@@ -5,24 +5,34 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '11'
-      - name: Install Apktool & Signer
+          
+      - name: Install Apktool & Build-Tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y apktool apksigner
+          sudo apt-get install -y apktool apksigner android-sdk-build-tools
+          
       - name: Build APK
-        run: apktool b . -o unsigned.apk
-      - name: Sign APK
+        run: |
+          # Memaksa apktool menggunakan aapt2 bawaan ubuntu
+          apktool b . -o unsigned.apk --use-aapt2 /usr/bin/aapt2
+          
+      - name: Create debug keystore
         run: |
           keytool -genkeypair -alias debug -keyalg RSA -keysize 2048 -validity 10000 -keystore debug.keystore -storepass android -keypass android -dname "CN=Android Debug,O=Android,C=US"
+          
+      - name: Sign APK
+        run: |
           apksigner sign --ks debug.keystore --ks-key-alias debug --ks-pass pass:android --key-pass pass:android --out viralclip_fixed_signed.apk unsigned.apk
+          
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Signed-APK
+          name: viralclip_fixed_signed.apk
           path: viralclip_fixed_signed.apk
           

@@ -397,7 +397,7 @@
 .end method
 
 .method private static collapse(Ljava/lang/String;)Ljava/lang/String;
-    .locals 2
+    .locals 6
 
     .line 521
     const-string v0, "\\s+"
@@ -416,7 +416,7 @@
 .end method
 
 .method static describe(Ljava/lang/Throwable;)Ljava/lang/String;
-    .locals 2
+    .locals 6
 
     .line 613
     invoke-virtual {p0}, Ljava/lang/Throwable;->getMessage()Ljava/lang/String;
@@ -1854,16 +1854,11 @@ move-result-object p0
 return-object p0
 :catch_0
 move-exception v1
-# Show error via Toast
-const/4 v2, 0x1
+const-string v2, "ViralClip"
 invoke-virtual {v1}, Ljava/lang/Throwable;->getMessage()Ljava/lang/String;
 move-result-object v3
-const-string v4, "Extractor error: "
-invoke-virtual {v4, v3}, Ljava/lang/String;->concat(Ljava/lang/String;)Ljava/lang/String;
-move-result-object v4
-invoke-static {p0, v4, v2}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
-move-result-object v4
-invoke-virtual {v4}, Landroid/widget/Toast;->show()V
+invoke-static {v2, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+pop
 const/4 p0, 0x0
 return-object p0
 
@@ -2563,7 +2558,7 @@ return-object p0
 .end method
 
 .method private static unescape(Ljava/lang/String;)Ljava/lang/String;
-    .locals 2
+    .locals 6
 
     .line 510
     const-string v0, "&amp;"

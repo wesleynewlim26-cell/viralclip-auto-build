@@ -260,16 +260,6 @@
     .line 270
     :catch_0
     move-exception v1
-    # Show error via Toast
-    const/4 v2, 0x1
-    invoke-virtual {v1}, Ljava/lang/Throwable;->getMessage()Ljava/lang/String;
-    move-result-object v3
-    const-string v4, "Clip error: "
-    invoke-virtual {v4, v3}, Ljava/lang/String;->concat(Ljava/lang/String;)Ljava/lang/String;
-    move-result-object v4
-    invoke-static {p0, v4, v2}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
-    move-result-object v4
-    invoke-virtual {v4}, Landroid/widget/Toast;->show()V
     const/4 p0, 0x0
     return-wide v0
 .end method

@@ -1,0 +1,28 @@
+name: Build & Sign APK
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+      - name: Install Apktool & Signer
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y apktool apksigner
+      - name: Build APK
+        run: apktool b . -o unsigned.apk
+      - name: Sign APK
+        run: |
+          keytool -genkeypair -alias debug -keyalg RSA -keysize 2048 -validity 10000 -keystore debug.keystore -storepass android -keypass android -dname "CN=Android Debug,O=Android,C=US"
+          apksigner sign --ks debug.keystore --ks-key-alias debug --ks-pass pass:android --key-pass pass:android --out viralclip_fixed_signed.apk unsigned.apk
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Signed-APK
+          path: viralclip_fixed_signed.apk
+          

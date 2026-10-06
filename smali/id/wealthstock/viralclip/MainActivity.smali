@@ -1439,11 +1439,7 @@
 
     invoke-direct {v4, p0, v3}, Lid/wealthstock/viralclip/MainActivity$2;-><init>(Lid/wealthstock/viralclip/MainActivity;Ljava/io/File;)V
 
-    if-eqz v0, :cond_not_null
-    const-string v5, "Link kosong"
-    invoke-direct {p0, v5}, Lid/wealthstock/viralclip/MainActivity;->toast(Ljava/lang/String;)V
-    return-void
-    :cond_not_null
+    invoke-static {v0, v1, v2, v3, v4}, Lid/wealthstock/viralclip/ClipPipeline;->run(Ljava/lang/String;IILjava/io/File;Lid/wealthstock/viralclip/ClipPipeline$Callback;)V
 
     .line 281
     return-void

@@ -84,7 +84,7 @@
     goto :rescue_show
 
     :rescue_have_idx
-    add-int/2lit8 v2, v2, 0x6
+    add-int/lit8 v2, v2, 0x6
 
     invoke-virtual {v1, v2}, Ljava/lang/String;->substring(I)Ljava/lang/String;
 

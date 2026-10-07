@@ -1,0 +1,116 @@
+name: Rescue Emulator Test Debug4
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+
+      - name: Install yt-dlp
+        run: |
+          python3 -m pip install --upgrade yt-dlp
+
+      - name: Install Apktool & Build-Tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y apktool apksigner android-sdk-build-tools
+
+      - name: Build APK
+        run: |
+          apktool b . -o unsigned.apk --use-aapt2 /usr/bin/aapt2
+
+      - name: Create debug keystore
+        run: |
+          keytool -genkeypair -alias debug -keyalg RSA -keysize 2048 -validity 10000 -keystore debug.keystore -storepass android -keypass android -dname "CN=Android Debug,O=Android,C=US"
+
+      - name: Sign APK
+        run: |
+          apksigner sign --ks debug.keystore --ks-key-alias debug --ks-pass pass:android --key-pass pass:android --out viralclip-debug4.apk unsigned.apk
+
+      - name: Verify APK
+        run: |
+          apksigner verify --verbose viralclip-debug4.apk
+          ls -lh viralclip-debug4.apk
+
+      - name: Upload viralclip-debug4 artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: viralclip-debug4
+          path: viralclip-debug4.apk
+
+  emulator-test:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download APK from build job
+        uses: actions/download-artifact@v4
+        with:
+          name: viralclip-debug4
+          path: ./apk
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+
+      - name: Run emulator + logcat capture
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 30
+          arch: x86_64
+          enable-kvm: true
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
+          disable-animations: true
+          script: |
+            ls -lh apk/viralclip-debug4.apk
+            adb install -r apk/viralclip-debug4.apk
+            adb logcat -c
+            adb shell am start -n id.wealthstock.viralclip/.MainActivity
+            sleep 15
+            adb shell uiautomator dump /sdcard/ui.xml
+            adb pull /sdcard/ui.xml ui.xml
+            cat ui.xml || true
+            COORD=$(python3 - <<'PY'
+            import re
+            xml=open('ui.xml',encoding='utf-8',errors='ignore').read()
+            for pat in [r'text="[^"]*DEBUG-4[^"]*"[^>]*bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"',
+                        r'text="[^"]*BUAT KLIP[^"]*"[^>]*bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"']:
+                m=re.search(pat,xml)
+                if m:
+                    x1,y1,x2,y2=map(int,m.groups());print((x1+x2)//2,(y1+y2)//2);break
+            PY
+            )
+            echo "COORD=$COORD"
+            if [ -z "$COORD" ]; then echo "COORD not found, dumping ui.xml"; cat ui.xml; exit 1; fi
+            adb shell input tap $COORD
+            sleep 90
+            adb shell uiautomator dump /sdcard/ui2.xml
+            adb pull /sdcard/ui2.xml ui2.xml
+            cat ui2.xml || true
+            adb logcat -d > logcat.txt
+            echo "--- logcat tail ---"
+            tail -n 300 logcat.txt || true
+            echo "--- VC-RESCUE filter ---"
+            grep -i "VC-RESCUE\|VerifyError\|wealthstock\|viralclip\|AndroidRuntime\|FATAL" logcat.txt | head -n 300 || true
+
+      - name: Upload emulator artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: emulator-logs-debug4
+          path: |
+            ui.xml
+            ui2.xml
+            logcat.txt

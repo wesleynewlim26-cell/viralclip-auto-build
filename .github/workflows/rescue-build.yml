@@ -8,26 +8,30 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up JDK 11
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
-          java-version: '11'
           distribution: 'temurin'
+          java-version: '11'
 
-      - name: Install Android Build Tools
+      - name: Install yt-dlp
         run: |
-          sudo -S -p '' apt-get update && sudo -S -p '' apt-get install -y apktool apksigner android-sdk-build-tools
+          python3 -m pip install --upgrade yt-dlp
+
+      - name: Install Apktool & Build-Tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y apktool apksigner android-sdk-build-tools
 
       - name: Build APK
         run: |
           apktool b . -o unsigned.apk --use-aapt2 /usr/bin/aapt2
 
-      - name: Generate debug keystore
+      - name: Create debug keystore
         run: |
-          keytool -genkeypair -v -keystore debug.keystore -storepass android -keypass android -alias debug -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
+          keytool -genkeypair -alias debug -keyalg RSA -keysize 2048 -validity 10000 -keystore debug.keystore -storepass android -keypass android -dname "CN=Android Debug,O=Android,C=US"
 
       - name: Sign APK
         run: |

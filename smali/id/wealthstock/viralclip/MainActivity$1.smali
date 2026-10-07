@@ -45,7 +45,7 @@
 
 # virtual methods
 .method public onClick(Landroid/view/View;)V
-    .locals 4
+    .locals 6
     :rescue_try_start
     .line 112
     iget-object v0, p0, Lid/wealthstock/viralclip/MainActivity$1;->this$0:Lid/wealthstock/viralclip/MainActivity;
@@ -71,17 +71,47 @@
 
     move-result v2
 
+    const-string v2, "class "
+
+    invoke-virtual {v1, v2}, Ljava/lang/String;->indexOf(Ljava/lang/String;)I
+
+    move-result v2
+
+    if-ltz v2, :rescue_have_idx
+
+    move-object v3, v1
+
+    goto :rescue_show
+
+    :rescue_have_idx
+    add-int/2lit8 v2, v2, 0x6
+
+    invoke-virtual {v1, v2}, Ljava/lang/String;->substring(I)Ljava/lang/String;
+
+    move-result-object v3
+
+    :rescue_show
     invoke-virtual {p1}, Landroid/view/View;->getContext()Landroid/content/Context;
 
-    move-result-object v2
+    move-result-object v4
 
-    const/4 v3, 0x1
+    const/4 v5, 0x1
 
-    invoke-static {v2, v1, v3}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+    invoke-static {v4, v3, v5}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
 
-    move-result-object v2
+    move-result-object v4
 
-    invoke-virtual {v2}, Landroid/widget/Toast;->show()V
+    invoke-virtual {v4}, Landroid/widget/Toast;->show()V
+
+    invoke-virtual {p1}, Landroid/view/View;->getContext()Landroid/content/Context;
+
+    move-result-object v4
+
+    invoke-static {v4, v1, v5}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Landroid/widget/Toast;->show()V
 
     return-void
 .end method

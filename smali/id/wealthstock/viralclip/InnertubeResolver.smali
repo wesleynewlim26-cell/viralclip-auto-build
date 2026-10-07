@@ -27,7 +27,7 @@
 
 .field private static final MIN_HEIGHT:I = 0x2d0
 
-
+.field private static final PLAYER:Ljava/lang/String; = "https://www.youtube.com/youtubei/v1/player"
 
 .field private static final SPAN:Ljava/util/regex/Pattern;
 
@@ -397,7 +397,7 @@
 .end method
 
 .method private static collapse(Ljava/lang/String;)Ljava/lang/String;
-    .locals 6
+    .locals 2
 
     .line 521
     const-string v0, "\\s+"
@@ -416,7 +416,7 @@
 .end method
 
 .method static describe(Ljava/lang/Throwable;)Ljava/lang/String;
-    .locals 6
+    .locals 2
 
     .line 613
     invoke-virtual {p0}, Ljava/lang/Throwable;->getMessage()Ljava/lang/String;
@@ -461,7 +461,7 @@
 
     move-result-object p0
     :try_end_0
-    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
     return-object p0
 
@@ -1837,26 +1837,21 @@
 .end method
 
 .method public static resolve(Ljava/lang/String;Ljava/lang/String;)Lid/wealthstock/viralclip/InnertubeResolver$Source;
-.locals 2
-.annotation system Ldalvik/annotation/Throws;
-    value = {
-        Lid/wealthstock/viralclip/InnertubeResolver$ResolveException;
-    }
-.end annotation
+    .locals 1
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Lid/wealthstock/viralclip/InnertubeResolver$ResolveException;
+        }
+    .end annotation
 
-.line 184
-const/16 v0, 0x438
-:try_start_0
-invoke-static {p0, p1, v0}, Lid/wealthstock/viralclip/InnertubeResolver;->resolve(Ljava/lang/String;Ljava/lang/String;I)Lid/wealthstock/viralclip/InnertubeResolver$Source;
-move-result-object p0
-:try_end_0
-.catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
-return-object p0
-:catch_0
-move-exception v1
-const/4 p0, 0x0
-return-object p0
+    .line 184
+    const/16 v0, 0x438
 
+    invoke-static {p0, p1, v0}, Lid/wealthstock/viralclip/InnertubeResolver;->resolve(Ljava/lang/String;Ljava/lang/String;I)Lid/wealthstock/viralclip/InnertubeResolver$Source;
+
+    move-result-object p0
+
+    return-object p0
 .end method
 
 .method public static resolve(Ljava/lang/String;Ljava/lang/String;I)Lid/wealthstock/viralclip/InnertubeResolver$Source;
@@ -1904,7 +1899,7 @@ return-object p0
 
     move-result-object v7
     :try_end_0
-    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 212
     nop
@@ -2191,7 +2186,7 @@ return-object p0
 
     aget-object p3, p3, v1
 
-    const-string v1, "https://www.youtube.com/youtubei/v1/player?key=AIzaSyD-PLACEHOLDER"
+    const-string v1, "https://www.youtube.com/youtubei/v1/player"
 
     invoke-static {v1, v0, p3}, Lid/wealthstock/viralclip/InnertubeResolver;->post(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
@@ -2553,7 +2548,7 @@ return-object p0
 .end method
 
 .method private static unescape(Ljava/lang/String;)Ljava/lang/String;
-    .locals 6
+    .locals 2
 
     .line 510
     const-string v0, "&amp;"

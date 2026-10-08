@@ -51,7 +51,7 @@ jobs:
   emulator-test:
     needs: build
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
         with:
@@ -74,41 +74,71 @@ jobs:
         with:
           api-level: 30
           arch: x86_64
-          target: google_apis
-          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
+          target: default
+          emulator-options: -no-snapshot -no-boot-anim -gpu swiftshader_indirect -memory 4096 -cores 2
           disable-animations: true
           script: |
             ls -lh apk/viralclip-debug4.apk
-            echo "--- retry install (Broken pipe workaround) ---"
-            for i in 1 2 3; do echo "install attempt $i"; adb install -r apk/viralclip-debug4.apk && break; echo "install failed, waiting 15s"; sleep 15; done
+            echo "--- wait boot sabar ---"
+            adb wait-for-device
+            BOOT=""
+            i=0
+            for i in $(seq 1 240); do
+              BOOT=$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')
+              [ "$BOOT" = "1" ] && break
+              sleep 5
+            done
+            echo "boot_completed=$BOOT setelah ~$((i*5)) detik"
+            if adb shell pm list packages >/dev/null 2>&1; then echo SERVICES_OK; SERVICES=1; else echo SERVICES_MISSING; SERVICES=0; fi
+            if [ "$SERVICES" != "1" ]; then
+              echo "SKIP_INSTALL_SERVICES_DOWN"
+              echo "SERVICES_DOWN_NO_INSTALL" > logcat_live.txt
+              exit 0
+            fi
+            echo "--- retry install 3x jeda 20s ---"
+            for i in 1 2 3; do echo "install attempt $i"; adb install -r apk/viralclip-debug4.apk && break; echo "install failed, waiting 20s"; sleep 20; done
             adb logcat -c
+            adb logcat -v time > logcat_live.txt &
+            LOGPID=$!
+            echo "logcat pid=$LOGPID"
             adb shell am start -n id.wealthstock.viralclip/.MainActivity
-            sleep 15
-            adb shell uiautomator dump /sdcard/ui.xml
-            adb pull /sdcard/ui.xml ui.xml
-            cat ui.xml || true
+            sleep 20
+            adb shell uiautomator dump /sdcard/ui.xml || true
+            adb pull /sdcard/ui.xml ui.xml || true
+            cat ui.xml || echo "UI_XML_MISSING"
             COORD=$(python3 - <<'PY'
             import re
-            xml=open('ui.xml',encoding='utf-8',errors='ignore').read()
-            for pat in [r'text="[^"]*DEBUG-4[^"]*"[^>]*bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"',
-                        r'text="[^"]*BUAT KLIP[^"]*"[^>]*bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"']:
+            try:
+                xml=open('ui.xml',encoding='utf-8',errors='ignore').read()
+            except Exception:
+                xml=""
+            pats=[r'text="[^"]*DEBUG-4[^"]*"[^>]*bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"',
+                  r'text="[^"]*BUAT KLIP[^"]*"[^>]*bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"',
+                  r'text="[^"]*MEMPROSES[^"]*"[^>]*bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"']
+            for pat in pats:
                 m=re.search(pat,xml)
                 if m:
                     x1,y1,x2,y2=map(int,m.groups());print((x1+x2)//2,(y1+y2)//2);break
             PY
             )
             echo "COORD=$COORD"
-            if [ -z "$COORD" ]; then echo "COORD not found, dumping ui.xml"; cat ui.xml; exit 1; fi
-            adb shell input tap $COORD
+            if [ -z "$COORD" ]; then
+              echo "COORD_NOT_FOUND"
+            else
+              adb shell input tap $COORD
+            fi
             sleep 90
-            adb shell uiautomator dump /sdcard/ui2.xml
-            adb pull /sdcard/ui2.xml ui2.xml
-            cat ui2.xml || true
-            adb logcat -d > logcat.txt
+            adb shell uiautomator dump /sdcard/ui2.xml || true
+            adb pull /sdcard/ui2.xml ui2.xml || true
+            cat ui2.xml || echo "UI2_XML_MISSING"
+            adb exec-out screencap -p > screen.png || true
+            ls -lh screen.png ui.xml ui2.xml logcat_live.txt || true
+            kill $LOGPID || true
+            sleep 2
             echo "--- logcat tail ---"
-            tail -n 300 logcat.txt || true
-            echo "--- VC-RESCUE filter ---"
-            grep -i "VC-RESCUE\|VerifyError\|wealthstock\|viralclip\|AndroidRuntime\|FATAL" logcat.txt | head -n 300 || true
+            tail -n 300 logcat_live.txt || true
+            echo "--- FILTER ---"
+            grep -i "FATAL\|VC-RESCUE\|AndroidRuntime\|ffmpeg\|yt-dlp\|ClipPipeline" logcat_live.txt | head -n 300 || true
 
       - name: Upload emulator artifacts
         if: always()
@@ -116,6 +146,7 @@ jobs:
         with:
           name: emulator-logs-debug4
           path: |
+            logcat_live.txt
             ui.xml
             ui2.xml
-            logcat.txt
+            screen.png

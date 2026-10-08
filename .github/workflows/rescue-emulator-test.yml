@@ -79,7 +79,8 @@ jobs:
           disable-animations: true
           script: |
             ls -lh apk/viralclip-debug4.apk
-            adb install -r apk/viralclip-debug4.apk
+            echo "--- retry install (Broken pipe workaround) ---"
+            for i in 1 2 3; do echo "install attempt $i"; adb install -r apk/viralclip-debug4.apk && break; echo "install failed, waiting 15s"; sleep 15; done
             adb logcat -c
             adb shell am start -n id.wealthstock.viralclip/.MainActivity
             sleep 15

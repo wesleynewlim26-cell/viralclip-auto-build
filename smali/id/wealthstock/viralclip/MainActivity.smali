@@ -565,7 +565,7 @@
     .line 105
     iget-object v4, v0, Lid/wealthstock/viralclip/MainActivity;->render:Landroid/widget/Button;
 
-    const-string v9, "DEBUG-4 BUAT KLIP"
+    const-string v9, "DEBUG-5 BUAT KLIP"
 
     invoke-virtual {v4, v9}, Landroid/widget/Button;->setText(Ljava/lang/CharSequence;)V
 
@@ -1506,6 +1506,8 @@
 # virtual methods
 .method protected onCreate(Landroid/os/Bundle;)V
     .locals 5
+
+    invoke-static {p0}, Ldebug/BlackBox;->install(Landroid/content/Context;)V
 
     .line 58
     invoke-super {p0, p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V

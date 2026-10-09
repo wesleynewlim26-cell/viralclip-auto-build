@@ -172,15 +172,22 @@
     :try_start_1
     invoke-virtual {p0, v2}, Ljava/net/HttpURLConnection;->setConnectTimeout(I)V
 
-    .line 259
-    const-string v2, "HEAD"
-
-    invoke-virtual {p0, v2}, Ljava/net/HttpURLConnection;->setRequestMethod(Ljava/lang/String;)V
-
     .line 260
     const-string v2, "User-Agent"
 
     const-string v3, "com.google.android.youtube/20.10.38 (Linux; U; Android 14) gzip"
+
+    invoke-virtual {p0, v2, v3}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
+
+    const-string v2, "Accept"
+
+    const-string v3, "*/*"
+
+    invoke-virtual {p0, v2, v3}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
+
+    const-string v2, "Range"
+
+    const-string v3, "bytes=0-1"
 
     invoke-virtual {p0, v2, v3}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
 
@@ -192,6 +199,10 @@
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
     const/16 v3, 0xc8
+
+    if-eq v2, v3, :cond_1
+
+    const/16 v3, 0xce
 
     if-eq v2, v3, :cond_1
 
@@ -210,6 +221,56 @@
     .line 265
     :cond_1
     :try_start_3
+    const-string v2, "Content-Range"
+
+    invoke-virtual {p0, v2}, Ljava/net/HttpURLConnection;->getHeaderField(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v2
+
+    if-eqz v2, :cond_use_length
+
+    invoke-virtual {v2}, Ljava/lang/String;->trim()Ljava/lang/String;
+
+    move-result-object v2
+
+    const-string v3, "/"
+
+    invoke-virtual {v2, v3}, Ljava/lang/String;->lastIndexOf(Ljava/lang/String;)I
+
+    move-result v3
+
+    if-ltz v3, :cond_use_length
+
+    add-int/lit8 v3, v3, 0x1
+
+    invoke-virtual {v2, v3}, Ljava/lang/String;->substring(I)Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/String;->trim()Ljava/lang/String;
+
+    move-result-object v2
+
+    const-string v3, "*"
+
+    invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v3
+
+    if-nez v3, :cond_cr_unknown
+
+    invoke-static {v2}, Ljava/lang/Long;->parseLong(Ljava/lang/String;)J
+
+    move-result-wide v2
+
+    goto :goto_0
+
+    :cond_cr_unknown
+    move-wide v2, v0
+
+    goto :goto_0
+
+    :cond_use_length
     const-string v2, "Content-Length"
 
     invoke-virtual {p0, v2}, Ljava/net/HttpURLConnection;->getHeaderField(Ljava/lang/String;)Ljava/lang/String;

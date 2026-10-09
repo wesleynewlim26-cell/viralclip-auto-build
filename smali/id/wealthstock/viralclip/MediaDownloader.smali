@@ -2169,7 +2169,7 @@
 .end method
 
 .method private static resumeOnce(Ljava/lang/String;Ljava/io/File;Lid/wealthstock/viralclip/MediaDownloader$Probe;Lid/wealthstock/viralclip/MediaDownloader$Progress;I)Lid/wealthstock/viralclip/MediaDownloader$Fetch;
-    .locals 23
+    .locals 27
 
     .line 526
     new-instance v1, Lid/wealthstock/viralclip/MediaDownloader$Fetch;
@@ -2238,10 +2238,28 @@
 
     invoke-virtual {v7, v0, v8}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
 
+    const-string v0, "Range"
+
+    const-string v8, "bytes=0-"
+
+    invoke-virtual {v7, v0, v8}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
+
     .line 539
     invoke-virtual {v7}, Ljava/net/HttpURLConnection;->getResponseCode()I
 
     move-result v0
+
+    const-string v23, "VC-DOWNLOAD"
+
+    move-object/from16 v24, p0
+
+    invoke-static/range {v23 .. v24}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+
+    invoke-static {v0}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
+
+    move-result-object v24
+
+    invoke-static/range {v23 .. v24}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
     :try_end_1
     .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_7
     .catchall {:try_start_1 .. :try_end_1} :catchall_2

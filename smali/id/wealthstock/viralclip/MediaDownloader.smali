@@ -2384,7 +2384,9 @@
 
     const-string v8, "FETCH"
 
-    invoke-static {v8, p0, v0}, Lid/wealthstock/viralclip/MediaDownloader;->logLine(Ljava/lang/String;Ljava/lang/String;I)V
+    move-object/from16 v15, p0
+
+    invoke-static {v8, v15, v0}, Lid/wealthstock/viralclip/MediaDownloader;->logLine(Ljava/lang/String;Ljava/lang/String;I)V
     :try_end_1
     .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_7
     .catchall {:try_start_1 .. :try_end_1} :catchall_2

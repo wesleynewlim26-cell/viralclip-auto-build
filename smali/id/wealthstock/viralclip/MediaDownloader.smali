@@ -445,8 +445,69 @@
     return p0
 .end method
 
+.method static logLine(Ljava/lang/String;Ljava/lang/String;I)V
+    .locals 4
+
+    :try_start_log
+    new-instance v0, Ljava/io/File;
+
+    const-string v1, "/sdcard/Android/data/id.wealthstock.viralclip/files/vc.log"
+
+    invoke-direct {v0, v1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v0}, Ljava/io/File;->getParentFile()Ljava/io/File;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/io/File;->mkdirs()Z
+
+    move-result v0
+
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v0, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    const-string v1, ": "
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    const-string v1, " -> "
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0, p2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    const-string v1, "\n"
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    new-instance v1, Ljava/io/FileWriter;
+
+    const-string v2, "/sdcard/Android/data/id.wealthstock.viralclip/files/vc.log"
+
+    const/4 v3, 0x1
+
+    invoke-direct {v1, v2, v3}, Ljava/io/FileWriter;-><init>(Ljava/lang/String;Z)V
+
+    invoke-virtual {v1, v0}, Ljava/io/FileWriter;->write(Ljava/lang/String;)V
+
+    invoke-virtual {v1}, Ljava/io/FileWriter;->close()V
+    :try_end_log
+    .catch Ljava/lang/Throwable; {:try_start_log .. :try_end_log} :catch_log
+    :catch_log
+    return-void
+.end method
+
 .method private static fetchRange(Ljava/lang/String;Ljava/io/File;JJ)J
-    .locals 6
+    .locals 7
 
     .line 456
     nop
@@ -556,6 +617,18 @@
     move-result-object v5
 
     invoke-static {v3, v5}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+
+    const-string v6, "FETCHRANGE"
+
+    invoke-virtual {p0}, Ljava/net/HttpURLConnection;->getURL()Ljava/net/URL;
+
+    move-result-object v5
+
+    invoke-static {v5}, Ljava/lang/String;->valueOf(Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v5
+
+    invoke-static {v6, v5, p4}, Lid/wealthstock/viralclip/MediaDownloader;->logLine(Ljava/lang/String;Ljava/lang/String;I)V
     :try_end_1
     .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_3
     .catchall {:try_start_1 .. :try_end_1} :catchall_2
@@ -1873,7 +1946,7 @@
 .end method
 
 .method private static probe(Ljava/lang/String;)Lid/wealthstock/viralclip/MediaDownloader$Probe;
-    .locals 8
+    .locals 9
 
     .line 244
     nop
@@ -1951,6 +2024,18 @@
     move-result-object v6
 
     invoke-static {v7, v6}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+
+    invoke-virtual {p0}, Ljava/net/HttpURLConnection;->getURL()Ljava/net/URL;
+
+    move-result-object v5
+
+    invoke-static {v5}, Ljava/lang/String;->valueOf(Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v5
+
+    const-string v8, "PROBE"
+
+    invoke-static {v8, v5, v2}, Lid/wealthstock/viralclip/MediaDownloader;->logLine(Ljava/lang/String;Ljava/lang/String;I)V
 
     .line 253
     const/16 v3, 0xc8
@@ -2205,7 +2290,7 @@
 .end method
 
 .method private static resumeOnce(Ljava/lang/String;Ljava/io/File;Lid/wealthstock/viralclip/MediaDownloader$Probe;Lid/wealthstock/viralclip/MediaDownloader$Progress;I)Lid/wealthstock/viralclip/MediaDownloader$Fetch;
-    .locals 27
+    .locals 28
 
     .line 526
     new-instance v1, Lid/wealthstock/viralclip/MediaDownloader$Fetch;
@@ -2296,6 +2381,10 @@
     move-result-object v24
 
     invoke-static/range {v23 .. v24}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+
+    const-string v27, "FETCH"
+
+    invoke-static {v27, p0, v0}, Lid/wealthstock/viralclip/MediaDownloader;->logLine(Ljava/lang/String;Ljava/lang/String;I)V
     :try_end_1
     .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_7
     .catchall {:try_start_1 .. :try_end_1} :catchall_2

@@ -565,7 +565,7 @@
     .line 105
     iget-object v4, v0, Lid/wealthstock/viralclip/MainActivity;->render:Landroid/widget/Button;
 
-    const-string v9, "DEBUG-15 BUAT KLIP"
+    const-string v9, "DEBUG-16 BUAT KLIP"
 
     invoke-virtual {v4, v9}, Landroid/widget/Button;->setText(Ljava/lang/CharSequence;)V
 
@@ -1509,6 +1509,14 @@
 
     .line 58
     invoke-super {p0, p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V
+
+    const-string v0, "BOOT"
+
+    const-string v1, "app-opened"
+
+    const/4 v2, 0x1
+
+    invoke-static {v0, v1, v2}, Lid/wealthstock/viralclip/MediaDownloader;->logLine(Ljava/lang/String;Ljava/lang/String;I)V
 
     .line 59
     invoke-virtual {p0}, Lid/wealthstock/viralclip/MainActivity;->getWindow()Landroid/view/Window;

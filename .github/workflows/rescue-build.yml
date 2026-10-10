@@ -1,4 +1,4 @@
-name: Rescue Build Debug17
+name: Rescue Build Debug18
 on:
   push:
     branches: [ 'rescue/**' ]
@@ -35,15 +35,15 @@ jobs:
 
       - name: Sign APK
         run: |
-          apksigner sign --ks debug.keystore --ks-key-alias debug --ks-pass pass:android --key-pass pass:android --out viralclip-debug17.apk unsigned.apk
+          apksigner sign --ks debug.keystore --ks-key-alias debug --ks-pass pass:android --key-pass pass:android --out viralclip-debug18.apk unsigned.apk
 
       - name: Verify APK
         run: |
-          apksigner verify --verbose viralclip-debug17.apk
-          ls -lh viralclip-debug17.apk
+          apksigner verify --verbose viralclip-debug18.apk
+          ls -lh viralclip-debug18.apk
 
-      - name: Upload viralclip-debug17 artifact
+      - name: Upload viralclip-debug18 artifact
         uses: actions/upload-artifact@v4
         with:
-          name: viralclip-debug17
-          path: viralclip-debug17.apk
+          name: viralclip-debug18
+          path: viralclip-debug18.apk

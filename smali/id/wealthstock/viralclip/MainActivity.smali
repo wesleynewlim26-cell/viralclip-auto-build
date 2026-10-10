@@ -565,7 +565,7 @@
     .line 105
     iget-object v4, v0, Lid/wealthstock/viralclip/MainActivity;->render:Landroid/widget/Button;
 
-    const-string v9, "DEBUG-17 BUAT KLIP"
+    const-string v9, "DEBUG-18 BUAT KLIP"
 
     invoke-virtual {v4, v9}, Landroid/widget/Button;->setText(Ljava/lang/CharSequence;)V
 
@@ -1503,6 +1503,64 @@
 .end method
 
 
+.method public static showVcLog(Landroid/content/Context;)V
+    .locals 8
+    :try_start_vc
+    const/4 v0, 0x0
+    invoke-virtual {p0, v0}, Landroid/content/Context;->getExternalFilesDir(Ljava/lang/String;)Ljava/io/File;
+    move-result-object v0
+    if-eqz v0, :cond_vc_return
+    new-instance v1, Ljava/io/File;
+    const-string v2, "vc.log"
+    invoke-direct {v1, v0, v2}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
+    invoke-virtual {v1}, Ljava/io/File;->exists()Z
+    move-result v0
+    if-eqz v0, :cond_vc_return
+    new-instance v0, Ljava/io/FileReader;
+    invoke-direct {v0, v1}, Ljava/io/FileReader;-><init>(Ljava/io/File;)V
+    new-instance v1, Ljava/io/BufferedReader;
+    invoke-direct {v1, v0}, Ljava/io/BufferedReader;-><init>(Ljava/io/Reader;)V
+    new-instance v0, Ljava/lang/StringBuilder;
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+    :loop_vc
+    invoke-virtual {v1}, Ljava/io/BufferedReader;->readLine()Ljava/lang/String;
+    move-result-object v2
+    if-eqz v2, :after_loop_vc
+    invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    const-string v2, "\n"
+    invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    goto :loop_vc
+    :after_loop_vc
+    invoke-virtual {v1}, Ljava/io/BufferedReader;->close()V
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v0
+    invoke-virtual {v0}, Ljava/lang/String;->length()I
+    move-result v1
+    const/16 v2, 0xdac
+    if-le v1, v2, :no_trim_vc
+    sub-int v1, v1, v2
+    invoke-virtual {v0, v1}, Ljava/lang/String;->substring(I)Ljava/lang/String;
+    move-result-object v0
+    :no_trim_vc
+    new-instance v1, Landroid/app/AlertDialog$Builder;
+    invoke-direct {v1, p0}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
+    const-string v2, "VC LOG - screenshot ini"
+    invoke-virtual {v1, v2}, Landroid/app/AlertDialog$Builder;->setTitle(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
+    move-result-object v1
+    invoke-virtual {v1, v0}, Landroid/app/AlertDialog$Builder;->setMessage(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
+    move-result-object v0
+    const-string v1, "OK"
+    const/4 v2, 0x0
+    invoke-virtual {v0, v1, v2}, Landroid/app/AlertDialog$Builder;->setPositiveButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+    move-result-object v0
+    invoke-virtual {v0}, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
+    :cond_vc_return
+    :try_end_vc
+    .catch Ljava/lang/Throwable; {:try_start_vc .. :try_end_vc} :catch_vc
+    :catch_vc
+    return-void
+.end method
+
 # virtual methods
 .method protected onCreate(Landroid/os/Bundle;)V
     .locals 5
@@ -1519,6 +1577,8 @@
     const/4 v2, 0x1
 
     invoke-static {v0, v1, v2}, Lid/wealthstock/viralclip/MediaDownloader;->logLine(Ljava/lang/String;Ljava/lang/String;I)V
+
+    invoke-static {p0}, Lid/wealthstock/viralclip/MainActivity;->showVcLog(Landroid/content/Context;)V
 
     .line 59
     invoke-virtual {p0}, Lid/wealthstock/viralclip/MainActivity;->getWindow()Landroid/view/Window;

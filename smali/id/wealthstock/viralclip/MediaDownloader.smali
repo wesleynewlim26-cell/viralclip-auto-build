@@ -155,7 +155,7 @@
 .end method
 
 .method static fetch(Lid/wealthstock/viralclip/MediaDownloader$FreshUrl;Ljava/io/File;Lid/wealthstock/viralclip/MediaDownloader$Progress;)Z
-    .locals 16
+    .locals 15
 
     .line 135
     move-object/from16 v1, p1
@@ -232,11 +232,11 @@
 
     move-result-object v0
 
-    const-string v15, "WRAPPER"
+    const-string v2, "WRAPPER"
 
-    const/4 v2, 0x0
+    const/4 v3, 0x0
 
-    invoke-static {v15, v0, v2}, Lid/wealthstock/viralclip/MediaDownloader;->logLine(Ljava/lang/String;Ljava/lang/String;I)V
+    invoke-static {v2, v0, v3}, Lid/wealthstock/viralclip/MediaDownloader;->logLine(Ljava/lang/String;Ljava/lang/String;I)V
 
     .line 152
     if-eqz v0, :cond_b

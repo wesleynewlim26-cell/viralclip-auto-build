@@ -35,6 +35,8 @@
 .field private static final SILENT:Lid/wealthstock/viralclip/MediaDownloader$Progress;
 
 .field private static final USER_AGENT:Ljava/lang/String; = "com.google.android.youtube/20.10.38 (Linux; U; Android 14) gzip"
+.field public static sCtx:Landroid/content/Context;
+
 
 
 # direct methods
@@ -451,61 +453,49 @@
     return p0
 .end method
 
+.method public static setContext(Landroid/content/Context;)V
+    .locals 0
+    sput-object p0, Lid/wealthstock/viralclip/MediaDownloader;->sCtx:Landroid/content/Context;
+    return-void
+.end method
+
 .method static logLine(Ljava/lang/String;Ljava/lang/String;I)V
-    .locals 4
+    .locals 5
 
     :try_start_log
-    new-instance v0, Ljava/io/File;
+    sget-object v0, Lid/wealthstock/viralclip/MediaDownloader;->sCtx:Landroid/content/Context;
+    if-eqz v0, :try_end_log
 
-    const-string v1, "/sdcard/Android/data/id.wealthstock.viralclip/files/vc.log"
-
-    invoke-direct {v0, v1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
-
-    invoke-virtual {v0}, Ljava/io/File;->getParentFile()Ljava/io/File;
-
+    const/4 v1, 0x0
+    invoke-virtual {v0, v1}, Landroid/content/Context;->getExternalFilesDir(Ljava/lang/String;)Ljava/io/File;
     move-result-object v0
+    if-eqz v0, :try_end_log
 
-    invoke-virtual {v0}, Ljava/io/File;->mkdirs()Z
+    new-instance v1, Ljava/io/File;
+    const-string v2, "vc.log"
+    invoke-direct {v1, v0, v2}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
 
-    move-result v0
+    new-instance v2, Ljava/lang/StringBuilder;
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-virtual {v2, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    const-string v3, ": "
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v2, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    const-string v3, " -> "
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v2, p2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    const-string v3, "
+"
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v2
 
-    new-instance v0, Ljava/lang/StringBuilder;
+    new-instance v3, Ljava/io/FileWriter;
+    const/4 v4, 0x1
+    invoke-direct {v3, v1, v4}, Ljava/io/FileWriter;-><init>(Ljava/io/File;Z)V
+    invoke-virtual {v3, v2}, Ljava/io/FileWriter;->write(Ljava/lang/String;)V
+    invoke-virtual {v3}, Ljava/io/FileWriter;->close()V
 
-    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
-
-    invoke-virtual {v0, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    const-string v1, ": "
-
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    const-string v1, " -> "
-
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v0, p2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    const-string v1, "\n"
-
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v0
-
-    new-instance v1, Ljava/io/FileWriter;
-
-    const-string v2, "/sdcard/Android/data/id.wealthstock.viralclip/files/vc.log"
-
-    const/4 v3, 0x1
-
-    invoke-direct {v1, v2, v3}, Ljava/io/FileWriter;-><init>(Ljava/lang/String;Z)V
-
-    invoke-virtual {v1, v0}, Ljava/io/FileWriter;->write(Ljava/lang/String;)V
-
-    invoke-virtual {v1}, Ljava/io/FileWriter;->close()V
     :try_end_log
     .catch Ljava/lang/Throwable; {:try_start_log .. :try_end_log} :catch_log
     :catch_log

@@ -500,6 +500,71 @@
     :catch_log
     return-void
 .end method
+.method static dump403(Ljava/net/HttpURLConnection;I)V
+    .locals 7
+    :try_start_dump
+    invoke-virtual {p0}, Ljava/net/HttpURLConnection;->getErrorStream()Ljava/io/InputStream;
+    move-result-object v0
+    if-nez v0, :have_stream_dump
+    invoke-virtual {p0}, Ljava/net/HttpURLConnection;->getInputStream()Ljava/io/InputStream;
+    move-result-object v0
+    :have_stream_dump
+    if-eqz v0, :after_body_dump
+    new-instance v1, Ljava/io/BufferedReader;
+    new-instance v2, Ljava/io/InputStreamReader;
+    invoke-direct {v2, v0}, Ljava/io/InputStreamReader;-><init>(Ljava/io/InputStream;)V
+    invoke-direct {v1, v2}, Ljava/io/BufferedReader;-><init>(Ljava/io/Reader;)V
+    new-instance v2, Ljava/lang/StringBuilder;
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+    :loop_body_dump
+    invoke-virtual {v1}, Ljava/io/BufferedReader;->readLine()Ljava/lang/String;
+    move-result-object v3
+    if-eqz v3, :end_loop_body_dump
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    const-string v3, "\n"
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->length()I
+    move-result v3
+    const/16 v4, 0x190
+    if-le v3, v4, :loop_body_dump
+    :end_loop_body_dump
+    invoke-virtual {v1}, Ljava/io/BufferedReader;->close()V
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v1
+    invoke-virtual {v1}, Ljava/lang/String;->length()I
+    move-result v3
+    const/16 v4, 0x190
+    if-le v3, v4, :no_trim_body_dump
+    const/4 v3, 0x0
+    const/16 v4, 0x190
+    invoke-virtual {v1, v3, v4}, Ljava/lang/String;->substring(II)Ljava/lang/String;
+    move-result-object v1
+    :no_trim_body_dump
+    const-string v3, "BODY"
+    invoke-static {v3, v1, p1}, Lid/wealthstock/viralclip/MediaDownloader;->logLine(Ljava/lang/String;Ljava/lang/String;I)V
+    :after_body_dump
+    invoke-virtual {p0}, Ljava/net/HttpURLConnection;->getHeaderFields()Ljava/util/Map;
+    move-result-object v0
+    invoke-static {v0}, Ljava/lang/String;->valueOf(Ljava/lang/Object;)Ljava/lang/String;
+    move-result-object v0
+    invoke-virtual {v0}, Ljava/lang/String;->length()I
+    move-result v1
+    const/16 v2, 0x190
+    if-le v1, v2, :no_trim_hdr_dump
+    const/4 v1, 0x0
+    const/16 v2, 0x190
+    invoke-virtual {v0, v1, v2}, Ljava/lang/String;->substring(II)Ljava/lang/String;
+    move-result-object v0
+    :no_trim_hdr_dump
+    const-string v1, "HDRS"
+    invoke-static {v1, v0, p1}, Lid/wealthstock/viralclip/MediaDownloader;->logLine(Ljava/lang/String;Ljava/lang/String;I)V
+    :try_end_dump
+    .catch Ljava/lang/Throwable; {:try_start_dump .. :try_end_dump} :catch_dump
+    :catch_dump
+    return-void
+.end method
+
+
 
 .method private static fetchRange(Ljava/lang/String;Ljava/io/File;JJ)J
     .locals 7
@@ -2032,6 +2097,11 @@
 
     invoke-static {v8, v5, v2}, Lid/wealthstock/viralclip/MediaDownloader;->logLine(Ljava/lang/String;Ljava/lang/String;I)V
 
+    const/16 v6, 0x190
+    if-lt v2, v6, :skip_dump_probe
+    invoke-static {p0, v2}, Lid/wealthstock/viralclip/MediaDownloader;->dump403(Ljava/net/HttpURLConnection;I)V
+    :skip_dump_probe
+
     .line 253
     const/16 v3, 0xc8
 
@@ -2382,6 +2452,11 @@
     move-object/from16 v15, p0
 
     invoke-static {v8, v15, v0}, Lid/wealthstock/viralclip/MediaDownloader;->logLine(Ljava/lang/String;Ljava/lang/String;I)V
+
+    const/16 v8, 0x190
+    if-lt v0, v8, :skip_dump_resume
+    invoke-static {v7, v0}, Lid/wealthstock/viralclip/MediaDownloader;->dump403(Ljava/net/HttpURLConnection;I)V
+    :skip_dump_resume
     :try_end_1
     .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_7
     .catchall {:try_start_1 .. :try_end_1} :catchall_2

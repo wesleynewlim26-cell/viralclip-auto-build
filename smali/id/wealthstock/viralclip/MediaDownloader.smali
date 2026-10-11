@@ -615,6 +615,12 @@
 
     invoke-virtual {p0, v3, v4}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
 
+    const-string v3, "Accept-Encoding"
+
+    const-string v4, "gzip"
+
+    invoke-virtual {p0, v3, v4}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
+
     .line 464
     const-string v3, "Accept"
 
@@ -2048,6 +2054,12 @@
 
     invoke-virtual {p0, v2, v3}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
 
+    const-string v2, "Accept-Encoding"
+
+    const-string v3, "gzip"
+
+    invoke-virtual {p0, v2, v3}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
+
     .line 250
     const-string v2, "Accept"
 
@@ -2414,6 +2426,12 @@
     const-string v0, "User-Agent"
 
     const-string v8, "com.google.android.youtube/20.10.38 (Linux; U; Android 14) gzip"
+
+    invoke-virtual {v7, v0, v8}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
+
+    const-string v0, "Accept-Encoding"
+
+    const-string v8, "gzip"
 
     invoke-virtual {v7, v0, v8}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
 

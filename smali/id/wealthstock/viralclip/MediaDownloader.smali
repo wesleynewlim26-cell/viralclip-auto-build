@@ -314,7 +314,7 @@
 
     .line 177
     :cond_6
-    if-eqz v14, :cond_9
+    goto :cond_9
 
     const-wide/32 v4, 0x200000
 
@@ -2170,6 +2170,7 @@
     move v7, v0
 
     :goto_0
+    const/4 v7, 0x0
     iput-boolean v7, v5, Lid/wealthstock/viralclip/MediaDownloader$Probe;->ranges:Z
 
     .line 261

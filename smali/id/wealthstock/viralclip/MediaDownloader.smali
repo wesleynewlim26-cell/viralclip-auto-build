@@ -256,28 +256,11 @@
 
     .line 163
     :cond_3
-    invoke-static {v0}, Lid/wealthstock/viralclip/MediaDownloader;->probe(Ljava/lang/String;)Lid/wealthstock/viralclip/MediaDownloader$Probe;
-
-    move-result-object v8
-
-    .line 164
-    iget-boolean v2, v8, Lid/wealthstock/viralclip/MediaDownloader$Probe;->reachable:Z
-
-    if-nez v2, :cond_4
-
-    .line 166
-    const-wide/16 v9, -0x1
-
-    const-wide/16 v11, 0x193
-
-    move-object/from16 v8, p2
-
-    invoke-interface/range {v8 .. v13}, Lid/wealthstock/viralclip/MediaDownloader$Progress;->onProgress(JJI)V
-
-    .line 167
-    move-object/from16 v4, p2
-
-    goto/16 :goto_2
+    new-instance v8, Lid/wealthstock/viralclip/MediaDownloader$Probe;
+    const/4 v2, 0x0
+    invoke-direct {v8, v2}, Lid/wealthstock/viralclip/MediaDownloader$Probe;-><init>(Lid/wealthstock/viralclip/MediaDownloader$1;)V
+    const/4 v2, 0x1
+    iput-boolean v2, v8, Lid/wealthstock/viralclip/MediaDownloader$Probe;->reachable:Z
 
     .line 169
     :cond_4

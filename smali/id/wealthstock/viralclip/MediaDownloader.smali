@@ -3271,6 +3271,123 @@
     return p0
 .end method
 
+
+.method private static okHttpGet(Ljava/lang/String;Ljava/util/Map;I)[Ljava/lang/Object;
+    .locals 11
+    .param p0, "url"    # Ljava/lang/String;
+    .param p1, "headers"    # Ljava/util/Map;
+    .param p2, "timeoutMs"    # I
+    .line 9000
+    const-string v0, "OKHTTP-HELPER"
+    const/4 v1, 0x0
+    invoke-static {v0, p0, v1}, Lid/wealthstock/viralclip/MediaDownloader;->logLine(Ljava/lang/String;Ljava/lang/String;I)V
+    :try_start_0
+    new-instance v0, Lokhttp3/OkHttpClient$Builder;
+    invoke-direct {v0}, Lokhttp3/OkHttpClient$Builder;-><init>()V
+    int-to-long v1, p2
+    sget-object v3, Ljava/util/concurrent/TimeUnit;->MILLISECONDS:Ljava/util/concurrent/TimeUnit;
+    invoke-virtual {v0, v1, v2, v3}, Lokhttp3/OkHttpClient$Builder;->connectTimeout(JLjava/util/concurrent/TimeUnit;)Lokhttp3/OkHttpClient$Builder;
+    move-result-object v0
+    int-to-long v1, p2
+    sget-object v3, Ljava/util/concurrent/TimeUnit;->MILLISECONDS:Ljava/util/concurrent/TimeUnit;
+    invoke-virtual {v0, v1, v2, v3}, Lokhttp3/OkHttpClient$Builder;->readTimeout(JLjava/util/concurrent/TimeUnit;)Lokhttp3/OkHttpClient$Builder;
+    move-result-object v0
+    int-to-long v1, p2
+    sget-object v3, Ljava/util/concurrent/TimeUnit;->MILLISECONDS:Ljava/util/concurrent/TimeUnit;
+    invoke-virtual {v0, v1, v2, v3}, Lokhttp3/OkHttpClient$Builder;->writeTimeout(JLjava/util/concurrent/TimeUnit;)Lokhttp3/OkHttpClient$Builder;
+    move-result-object v0
+    invoke-virtual {v0}, Lokhttp3/OkHttpClient$Builder;->build()Lokhttp3/OkHttpClient;
+    move-result-object v0
+    new-instance v1, Lokhttp3/Request$Builder;
+    invoke-direct {v1}, Lokhttp3/Request$Builder;-><init>()V
+    invoke-virtual {v1, p0}, Lokhttp3/Request$Builder;->url(Ljava/lang/String;)Lokhttp3/Request$Builder;
+    move-result-object v1
+    if-eqz p1, :cond_headers_done
+    invoke-interface {p1}, Ljava/util/Map;->entrySet()Ljava/util/Set;
+    move-result-object v2
+    invoke-interface {v2}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+    move-result-object v2
+    :loop_headers
+    invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
+    move-result v3
+    if-eqz v3, :cond_headers_done
+    invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    move-result-object v3
+    check-cast v3, Ljava/util/Map$Entry;
+    invoke-interface {v3}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
+    move-result-object v4
+    check-cast v4, Ljava/lang/String;
+    invoke-interface {v3}, Ljava/util/Map$Entry;->getValue()Ljava/lang/Object;
+    move-result-object v3
+    check-cast v3, Ljava/lang/String;
+    invoke-virtual {v1, v4, v3}, Lokhttp3/Request$Builder;->addHeader(Ljava/lang/String;Ljava/lang/String;)Lokhttp3/Request$Builder;
+    move-result-object v1
+    goto :loop_headers
+    :cond_headers_done
+    const-string v2, "User-Agent"
+    const-string v3, "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
+    invoke-virtual {v1, v2, v3}, Lokhttp3/Request$Builder;->addHeader(Ljava/lang/String;Ljava/lang/String;)Lokhttp3/Request$Builder;
+    move-result-object v1
+    const-string v2, "Accept-Encoding"
+    const-string v3, "gzip"
+    invoke-virtual {v1, v2, v3}, Lokhttp3/Request$Builder;->addHeader(Ljava/lang/String;Ljava/lang/String;)Lokhttp3/Request$Builder;
+    move-result-object v1
+    invoke-virtual {v1}, Lokhttp3/Request$Builder;->build()Lokhttp3/Request;
+    move-result-object v1
+    invoke-virtual {v0, v1}, Lokhttp3/OkHttpClient;->newCall(Lokhttp3/Request;)Lokhttp3/Call;
+    move-result-object v0
+    invoke-interface {v0}, Lokhttp3/Call;->execute()Lokhttp3/Response;
+    move-result-object v0
+    invoke-virtual {v0}, Lokhttp3/Response;->code()I
+    move-result v1
+    invoke-virtual {v0}, Lokhttp3/Response;->body()Lokhttp3/ResponseBody;
+    move-result-object v2
+    const-string v3, ""
+    if-eqz v2, :cond_no_body
+    invoke-virtual {v2}, Lokhttp3/ResponseBody;->string()Ljava/lang/String;
+    move-result-object v3
+    if-nez v3, :cond_got_body
+    const-string v3, ""
+    goto :cond_got_body
+    :cond_no_body
+    const-string v3, ""
+    :cond_got_body
+    invoke-virtual {v3}, Ljava/lang/String;->length()I
+    move-result v2
+    const/16 v4, 0x190
+    if-le v2, v4, :cond_no_trim
+    const/4 v2, 0x0
+    const/16 v4, 0x190
+    invoke-virtual {v3, v2, v4}, Ljava/lang/String;->substring(II)Ljava/lang/String;
+    move-result-object v3
+    :cond_no_trim
+    invoke-virtual {v0}, Lokhttp3/Response;->close()V
+    const/4 v0, 0x2
+    new-array v0, v0, [Ljava/lang/Object;
+    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    move-result-object v1
+    const/4 v2, 0x0
+    aput-object v1, v0, v2
+    const/4 v1, 0x1
+    aput-object v3, v0, v1
+    return-object v0
+    :try_end_0
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_all
+    :catch_all
+    move-exception v0
+    const/4 v1, 0x2
+    new-array v0, v1, [Ljava/lang/Object;
+    const/4 v1, -0x1
+    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    move-result-object v1
+    const/4 v2, 0x0
+    aput-object v1, v0, v2
+    const-string v1, "error"
+    const/4 v2, 0x1
+    aput-object v1, v0, v2
+    return-object v0
+.end method
+
 .method private static spanOf(IJJ)J
     .locals 2
 

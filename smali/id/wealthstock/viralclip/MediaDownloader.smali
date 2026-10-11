@@ -34,7 +34,7 @@
 
 .field private static final SILENT:Lid/wealthstock/viralclip/MediaDownloader$Progress;
 
-.field private static final USER_AGENT:Ljava/lang/String; = "com.google.android.youtube/20.10.38 (Linux; U; Android 14) gzip"
+.field private static final USER_AGENT:Ljava/lang/String; = "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
 .field public static sCtx:Landroid/content/Context;
 
 
@@ -611,7 +611,7 @@
     .line 463
     const-string v3, "User-Agent"
 
-    const-string v4, "com.google.android.youtube/20.10.38 (Linux; U; Android 14) gzip"
+    const-string v4, "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
 
     invoke-virtual {p0, v3, v4}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
 
@@ -2050,7 +2050,7 @@
     .line 249
     const-string v2, "User-Agent"
 
-    const-string v3, "com.google.android.youtube/20.10.38 (Linux; U; Android 14) gzip"
+    const-string v3, "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
 
     invoke-virtual {p0, v2, v3}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
 
@@ -2425,7 +2425,7 @@
     .line 536
     const-string v0, "User-Agent"
 
-    const-string v8, "com.google.android.youtube/20.10.38 (Linux; U; Android 14) gzip"
+    const-string v8, "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
 
     invoke-virtual {v7, v0, v8}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
 

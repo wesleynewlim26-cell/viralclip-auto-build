@@ -175,7 +175,7 @@
     .line 260
     const-string v2, "User-Agent"
 
-    const-string v3, "com.google.android.youtube/20.10.38 (Linux; U; Android 14) gzip"
+    const-string v3, "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
 
     invoke-virtual {p0, v2, v3}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
 

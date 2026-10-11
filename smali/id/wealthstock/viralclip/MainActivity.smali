@@ -565,7 +565,7 @@
     .line 105
     iget-object v4, v0, Lid/wealthstock/viralclip/MainActivity;->render:Landroid/widget/Button;
 
-    const-string v9, "DEBUG-21 BUAT KLIP"
+    const-string v9, "DEBUG-22 BUAT KLIP"
 
     invoke-virtual {v4, v9}, Landroid/widget/Button;->setText(Ljava/lang/CharSequence;)V
 

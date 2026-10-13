@@ -298,65 +298,6 @@
     .line 177
     :cond_6
     goto :cond_9
-
-    const-wide/32 v4, 0x200000
-
-    cmp-long v4, v2, v4
-
-    if-ltz v4, :cond_9
-
-    .line 178
-    move-object/from16 v4, p2
-
-    move v5, v13
-
-    invoke-static/range {v0 .. v5}, Lid/wealthstock/viralclip/MediaDownloader;->fetchRanges(Ljava/lang/String;Ljava/io/File;JLid/wealthstock/viralclip/MediaDownloader$Progress;I)Lid/wealthstock/viralclip/MediaDownloader$RangeResult;
-
-    move-result-object v2
-
-    .line 179
-    iget-boolean v3, v2, Lid/wealthstock/viralclip/MediaDownloader$RangeResult;->complete:Z
-
-    if-eqz v3, :cond_7
-
-    .line 180
-    return v7
-
-    .line 182
-    :cond_7
-    iget-boolean v3, v8, Lid/wealthstock/viralclip/MediaDownloader$Probe;->ranges:Z
-
-    if-nez v3, :cond_8
-
-    .line 185
-    nop
-
-    .line 186
-    invoke-static {v1}, Lid/wealthstock/viralclip/MediaDownloader;->discard(Ljava/io/File;)V
-
-    .line 187
-    invoke-static {v1}, Lid/wealthstock/viralclip/MediaDownloader;->sidecar(Ljava/io/File;)Ljava/io/File;
-
-    move-result-object v2
-
-    invoke-static {v2}, Lid/wealthstock/viralclip/MediaDownloader;->discard(Ljava/io/File;)V
-
-    move v14, v6
-
-    goto :goto_1
-
-    .line 188
-    :cond_8
-    iget-boolean v2, v2, Lid/wealthstock/viralclip/MediaDownloader$RangeResult;->anyProgress:Z
-
-    if-eqz v2, :cond_9
-
-    .line 195
-    move-object/from16 v4, p2
-
-    goto :goto_2
-
-    .line 203
     :cond_9
     :goto_1
     move-object/from16 v4, p2
@@ -551,409 +492,8 @@
 
 .method private static fetchRange(Ljava/lang/String;Ljava/io/File;JJ)J
     .locals 7
-
     .line 456
-    nop
-
-    .line 457
-    nop
-
-    .line 458
-    nop
-
-    .line 460
     const-wide/16 v0, 0x0
-
-    const/4 v2, 0x0
-
-    :try_start_0
-    new-instance v3, Ljava/net/URL;
-
-    invoke-direct {v3, p0}, Ljava/net/URL;-><init>(Ljava/lang/String;)V
-
-    invoke-virtual {v3}, Ljava/net/URL;->openConnection()Ljava/net/URLConnection;
-
-    move-result-object p0
-
-    check-cast p0, Ljava/net/HttpURLConnection;
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_5
-    .catchall {:try_start_0 .. :try_end_0} :catchall_3
-
-    .line 461
-    const/16 v3, 0x4e20
-
-    :try_start_1
-    invoke-virtual {p0, v3}, Ljava/net/HttpURLConnection;->setConnectTimeout(I)V
-
-    .line 462
-    const v3, 0xea60
-
-    invoke-virtual {p0, v3}, Ljava/net/HttpURLConnection;->setReadTimeout(I)V
-
-    .line 463
-    const-string v3, "User-Agent"
-
-    const-string v4, "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
-
-    invoke-virtual {p0, v3, v4}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
-
-    const-string v3, "Accept-Encoding"
-
-    const-string v4, "gzip"
-
-    invoke-virtual {p0, v3, v4}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 464
-    const-string v3, "Accept"
-
-    const-string v4, "*/*"
-
-    invoke-virtual {p0, v3, v4}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 465
-    const-string v3, "Range"
-
-    new-instance v4, Ljava/lang/StringBuilder;
-
-    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v5, "bytes="
-
-    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v4
-
-    invoke-virtual {v4, p2, p3}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
-
-    move-result-object v4
-
-    const-string v5, "-"
-
-    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v4
-
-    invoke-virtual {v4, p4, p5}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
-
-    move-result-object p4
-
-    invoke-virtual {p4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object p4
-
-    invoke-virtual {p0, v3, p4}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 467
-    invoke-virtual {p0}, Ljava/net/HttpURLConnection;->getResponseCode()I
-
-    move-result p4
-
-    const-string v3, "VC-FETCHRANGE"
-
-    invoke-virtual {p0}, Ljava/net/HttpURLConnection;->getURL()Ljava/net/URL;
-
-    move-result-object v5
-
-    invoke-static {v5}, Ljava/lang/String;->valueOf(Ljava/lang/Object;)Ljava/lang/String;
-
-    move-result-object v5
-
-    invoke-static {v3, v5}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-
-    invoke-static {p4}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
-
-    move-result-object v5
-
-    invoke-static {v3, v5}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-
-    const-string v6, "FETCHRANGE"
-
-    invoke-virtual {p0}, Ljava/net/HttpURLConnection;->getURL()Ljava/net/URL;
-
-    move-result-object v5
-
-    invoke-static {v5}, Ljava/lang/String;->valueOf(Ljava/lang/Object;)Ljava/lang/String;
-
-    move-result-object v5
-
-    invoke-static {v6, v5, p4}, Lid/wealthstock/viralclip/MediaDownloader;->logLine(Ljava/lang/String;Ljava/lang/String;I)V
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_3
-    .catchall {:try_start_1 .. :try_end_1} :catchall_2
-
-    .line 468
-    const/16 p5, 0xc8
-
-    if-ne p4, p5, :cond_1
-
-    .line 469
-    nop
-
-    .line 488
-    nop
-
-    .line 494
-    invoke-static {v2}, Lid/wealthstock/viralclip/MediaDownloader;->close(Ljava/io/RandomAccessFile;)V
-
-    .line 495
-    if-eqz p0, :cond_0
-
-    .line 496
-    invoke-virtual {p0}, Ljava/net/HttpURLConnection;->disconnect()V
-
-    .line 469
-    :cond_0
-    const-wide/16 p0, -0x1
-
-    return-wide p0
-
-    .line 471
-    :cond_1
-    const/16 p5, 0xce
-
-    if-eq p4, p5, :cond_3
-
-    .line 472
-    nop
-
-    .line 488
-    nop
-
-    .line 494
-    invoke-static {v2}, Lid/wealthstock/viralclip/MediaDownloader;->close(Ljava/io/RandomAccessFile;)V
-
-    .line 495
-    if-eqz p0, :cond_2
-
-    .line 496
-    invoke-virtual {p0}, Ljava/net/HttpURLConnection;->disconnect()V
-
-    .line 472
-    :cond_2
-    return-wide v0
-
-    .line 474
-    :cond_3
-    :try_start_2
-    invoke-virtual {p0}, Ljava/net/HttpURLConnection;->getInputStream()Ljava/io/InputStream;
-
-    move-result-object p4
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_3
-    .catchall {:try_start_2 .. :try_end_2} :catchall_2
-
-    .line 475
-    :try_start_3
-    new-instance p5, Ljava/io/RandomAccessFile;
-
-    const-string v3, "rw"
-
-    invoke-direct {p5, p1, v3}, Ljava/io/RandomAccessFile;-><init>(Ljava/io/File;Ljava/lang/String;)V
-    :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_2
-    .catchall {:try_start_3 .. :try_end_3} :catchall_1
-
-    .line 476
-    :try_start_4
-    invoke-virtual {p5, p2, p3}, Ljava/io/RandomAccessFile;->seek(J)V
-
-    .line 477
-    const/high16 p1, 0x40000
-
-    new-array p1, p1, [B
-
-    .line 479
-    move-wide p2, v0
-
-    .line 480
-    :goto_0
-    invoke-virtual {p4, p1}, Ljava/io/InputStream;->read([B)I
-
-    move-result v2
-
-    if-lez v2, :cond_4
-
-    .line 481
-    const/4 v3, 0x0
-
-    invoke-virtual {p5, p1, v3, v2}, Ljava/io/RandomAccessFile;->write([BII)V
-    :try_end_4
-    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_4} :catch_1
-    .catchall {:try_start_4 .. :try_end_4} :catchall_0
-
-    .line 482
-    int-to-long v2, v2
-
-    add-long/2addr p2, v2
-
-    goto :goto_0
-
-    .line 484
-    :cond_4
-    nop
-
-    .line 488
-    if-eqz p4, :cond_5
-
-    .line 490
-    :try_start_5
-    invoke-virtual {p4}, Ljava/io/InputStream;->close()V
-    :try_end_5
-    .catch Ljava/io/IOException; {:try_start_5 .. :try_end_5} :catch_0
-
-    .line 492
-    goto :goto_1
-
-    .line 491
-    :catch_0
-    move-exception p1
-
-    .line 494
-    :cond_5
-    :goto_1
-    invoke-static {p5}, Lid/wealthstock/viralclip/MediaDownloader;->close(Ljava/io/RandomAccessFile;)V
-
-    .line 495
-    if-eqz p0, :cond_6
-
-    .line 496
-    invoke-virtual {p0}, Ljava/net/HttpURLConnection;->disconnect()V
-
-    .line 484
-    :cond_6
-    return-wide p2
-
-    .line 488
-    :catchall_0
-    move-exception p1
-
-    goto :goto_2
-
-    .line 485
-    :catch_1
-    move-exception p1
-
-    goto :goto_3
-
-    .line 488
-    :catchall_1
-    move-exception p1
-
-    move-object p5, v2
-
-    :goto_2
-    move-object v2, p4
-
-    goto :goto_4
-
-    .line 485
-    :catch_2
-    move-exception p1
-
-    move-object p5, v2
-
-    :goto_3
-    move-object v2, p4
-
-    goto :goto_6
-
-    .line 488
-    :catchall_2
-    move-exception p1
-
-    move-object p5, v2
-
-    goto :goto_4
-
-    .line 485
-    :catch_3
-    move-exception p1
-
-    move-object p5, v2
-
-    goto :goto_6
-
-    .line 488
-    :catchall_3
-    move-exception p1
-
-    move-object p0, v2
-
-    move-object p5, p0
-
-    :goto_4
-    if-eqz v2, :cond_7
-
-    .line 490
-    :try_start_6
-    invoke-virtual {v2}, Ljava/io/InputStream;->close()V
-    :try_end_6
-    .catch Ljava/io/IOException; {:try_start_6 .. :try_end_6} :catch_4
-
-    .line 492
-    goto :goto_5
-
-    .line 491
-    :catch_4
-    move-exception p2
-
-    .line 494
-    :cond_7
-    :goto_5
-    invoke-static {p5}, Lid/wealthstock/viralclip/MediaDownloader;->close(Ljava/io/RandomAccessFile;)V
-
-    .line 495
-    if-eqz p0, :cond_8
-
-    .line 496
-    invoke-virtual {p0}, Ljava/net/HttpURLConnection;->disconnect()V
-
-    .line 498
-    :cond_8
-    throw p1
-
-    .line 485
-    :catch_5
-    move-exception p0
-
-    move-object p0, v2
-
-    move-object p5, p0
-
-    .line 486
-    :goto_6
-    nop
-
-    .line 488
-    if-eqz v2, :cond_9
-
-    .line 490
-    :try_start_7
-    invoke-virtual {v2}, Ljava/io/InputStream;->close()V
-    :try_end_7
-    .catch Ljava/io/IOException; {:try_start_7 .. :try_end_7} :catch_6
-
-    .line 492
-    goto :goto_7
-
-    .line 491
-    :catch_6
-    move-exception p1
-
-    .line 494
-    :cond_9
-    :goto_7
-    invoke-static {p5}, Lid/wealthstock/viralclip/MediaDownloader;->close(Ljava/io/RandomAccessFile;)V
-
-    .line 495
-    if-eqz p0, :cond_a
-
-    .line 496
-    invoke-virtual {p0}, Ljava/net/HttpURLConnection;->disconnect()V
-
-    .line 486
-    :cond_a
     return-wide v0
 .end method
 
@@ -1996,322 +1536,47 @@
 
 .method private static probe(Ljava/lang/String;)Lid/wealthstock/viralclip/MediaDownloader$Probe;
     .locals 9
-
     .line 244
-    nop
-
-    .line 246
     const/4 v0, 0x0
-
     const/4 v1, 0x0
-
-    :try_start_0
-    new-instance v2, Ljava/net/URL;
-
-    invoke-direct {v2, p0}, Ljava/net/URL;-><init>(Ljava/lang/String;)V
-
-    invoke-virtual {v2}, Ljava/net/URL;->openConnection()Ljava/net/URLConnection;
-
-    move-result-object p0
-
-    check-cast p0, Ljava/net/HttpURLConnection;
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
-
-    .line 247
-    const/16 v2, 0x3a98
-
-    :try_start_1
-    invoke-virtual {p0, v2}, Ljava/net/HttpURLConnection;->setConnectTimeout(I)V
-
-    .line 248
-    const/16 v2, 0x4e20
-
-    invoke-virtual {p0, v2}, Ljava/net/HttpURLConnection;->setReadTimeout(I)V
-
-    .line 249
-    const-string v2, "User-Agent"
-
-    const-string v3, "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
-
-    invoke-virtual {p0, v2, v3}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
-
-    const-string v2, "Accept-Encoding"
-
-    const-string v3, "gzip"
-
-    invoke-virtual {p0, v2, v3}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 250
-    const-string v2, "Accept"
-
-    const-string v3, "*/*"
-
-    invoke-virtual {p0, v2, v3}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 251
-    const-string v2, "Range"
-
-    const-string v3, "bytes=0-1"
-
-    invoke-virtual {p0, v2, v3}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 252
-    invoke-virtual {p0}, Ljava/net/HttpURLConnection;->getResponseCode()I
-
-    move-result v2
-
-    const-string v7, "VC-PROBE"
-
-    invoke-virtual {p0}, Ljava/net/HttpURLConnection;->getURL()Ljava/net/URL;
-
-    move-result-object v6
-
-    invoke-static {v6}, Ljava/lang/String;->valueOf(Ljava/lang/Object;)Ljava/lang/String;
-
-    move-result-object v6
-
-    invoke-static {v7, v6}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-
-    invoke-static {v2}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
-
-    move-result-object v6
-
-    invoke-static {v7, v6}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-
-    invoke-virtual {p0}, Ljava/net/HttpURLConnection;->getURL()Ljava/net/URL;
-
-    move-result-object v5
-
-    invoke-static {v5}, Ljava/lang/String;->valueOf(Ljava/lang/Object;)Ljava/lang/String;
-
-    move-result-object v5
-
-    const-string v8, "PROBE"
-
-    invoke-static {v8, v5, v2}, Lid/wealthstock/viralclip/MediaDownloader;->logLine(Ljava/lang/String;Ljava/lang/String;I)V
-
-    const/16 v6, 0x190
-    if-lt v2, v6, :skip_dump_probe
-    invoke-static {p0, v2}, Lid/wealthstock/viralclip/MediaDownloader;->dump403(Ljava/net/HttpURLConnection;I)V
-    :skip_dump_probe
-
-    .line 253
-    const/16 v3, 0xc8
-
-    const/16 v4, 0xce
-
-    if-eq v2, v3, :cond_1
-
-    if-eq v2, v4, :cond_1
-
-    .line 254
-    new-instance v2, Lid/wealthstock/viralclip/MediaDownloader$Probe;
-
-    invoke-direct {v2, v1}, Lid/wealthstock/viralclip/MediaDownloader$Probe;-><init>(Lid/wealthstock/viralclip/MediaDownloader$1;)V
-
-    .line 255
-    iput-boolean v0, v2, Lid/wealthstock/viralclip/MediaDownloader$Probe;->reachable:Z
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
-    .catchall {:try_start_1 .. :try_end_1} :catchall_1
-
-    .line 256
-    nop
-
-    .line 299
-    if-eqz p0, :cond_0
-
-    .line 300
-    invoke-virtual {p0}, Ljava/net/HttpURLConnection;->disconnect()V
-
-    .line 256
-    :cond_0
-    return-object v2
-
-    .line 258
-    :cond_1
-    :try_start_2
-    new-instance v5, Lid/wealthstock/viralclip/MediaDownloader$Probe;
-
-    invoke-direct {v5, v1}, Lid/wealthstock/viralclip/MediaDownloader$Probe;-><init>(Lid/wealthstock/viralclip/MediaDownloader$1;)V
-
-    .line 259
-    const/4 v6, 0x1
-
-    iput-boolean v6, v5, Lid/wealthstock/viralclip/MediaDownloader$Probe;->reachable:Z
-
-    .line 260
-    if-ne v2, v4, :cond_2
-
-    move v7, v6
-
-    goto :goto_0
-
-    :cond_2
-    move v7, v0
-
-    :goto_0
-    const/4 v7, 0x0
-    iput-boolean v7, v5, Lid/wealthstock/viralclip/MediaDownloader$Probe;->ranges:Z
-
-    .line 261
-    if-ne v2, v4, :cond_3
-
-    .line 263
-    const-string v4, "Content-Range"
-
-    invoke-virtual {p0, v4}, Ljava/net/HttpURLConnection;->getHeaderField(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v4
-
-    .line 264
-    if-eqz v4, :cond_3
-
-    .line 265
-    const/16 v7, 0x2f
-
-    invoke-virtual {v4, v7}, Ljava/lang/String;->lastIndexOf(I)I
-
-    move-result v7
-
-    .line 266
-    if-ltz v7, :cond_3
-
-    add-int/2addr v7, v6
-
-    invoke-virtual {v4}, Ljava/lang/String;->length()I
-
-    move-result v6
-
-    if-ge v7, v6, :cond_3
-
-    .line 267
-    invoke-virtual {v4, v7}, Ljava/lang/String;->substring(I)Ljava/lang/String;
-
-    move-result-object v4
-
-    invoke-virtual {v4}, Ljava/lang/String;->trim()Ljava/lang/String;
-
-    move-result-object v4
-
-    .line 268
-    const-string v6, "*"
-
-    invoke-virtual {v6, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v6
-
-    if-nez v6, :cond_3
-
-    .line 269
-    invoke-static {v4}, Lid/wealthstock/viralclip/MediaDownloader;->parseLong(Ljava/lang/String;)J
-
-    move-result-wide v6
-
-    iput-wide v6, v5, Lid/wealthstock/viralclip/MediaDownloader$Probe;->total:J
-
-    .line 274
-    :cond_3
-    if-ne v2, v3, :cond_4
-
-    .line 278
-    const-string v2, "Content-Length"
-
-    invoke-virtual {p0, v2}, Ljava/net/HttpURLConnection;->getHeaderField(Ljava/lang/String;)Ljava/lang/String;
-
+    new-instance v2, Ljava/util/HashMap;
+    invoke-direct {v2}, Ljava/util/HashMap;-><init>()V
+    const-string v3, "Range"
+    const-string v4, "bytes=0-1"
+    invoke-interface {v2, v3, v4}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    const/16 v3, 0x2710
+    invoke-static {p0, v2, v3}, Lid/wealthstock/viralclip/MediaDownloader;->okHttpGet(Ljava/lang/String;Ljava/util/Map;I)[Ljava/lang/Object;
     move-result-object v2
-
-    .line 279
-    if-eqz v2, :cond_4
-
-    .line 280
-    invoke-virtual {v2}, Ljava/lang/String;->trim()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-static {v2}, Lid/wealthstock/viralclip/MediaDownloader;->parseLong(Ljava/lang/String;)J
-
-    move-result-wide v2
-
-    iput-wide v2, v5, Lid/wealthstock/viralclip/MediaDownloader$Probe;->total:J
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_0
-    .catchall {:try_start_2 .. :try_end_2} :catchall_1
-
-    .line 293
-    :cond_4
-    nop
-
-    .line 299
-    if-eqz p0, :cond_5
-
-    .line 300
-    invoke-virtual {p0}, Ljava/net/HttpURLConnection;->disconnect()V
-
-    .line 293
-    :cond_5
-    return-object v5
-
-    .line 294
-    :catch_0
-    move-exception v2
-
-    goto :goto_1
-
-    .line 299
-    :catchall_0
-    move-exception v0
-
-    goto :goto_2
-
-    .line 294
-    :catch_1
-    move-exception p0
-
-    move-object p0, v1
-
-    .line 295
-    :goto_1
-    :try_start_3
-    new-instance v2, Lid/wealthstock/viralclip/MediaDownloader$Probe;
-
-    invoke-direct {v2, v1}, Lid/wealthstock/viralclip/MediaDownloader$Probe;-><init>(Lid/wealthstock/viralclip/MediaDownloader$1;)V
-
-    .line 296
-    iput-boolean v0, v2, Lid/wealthstock/viralclip/MediaDownloader$Probe;->reachable:Z
-    :try_end_3
-    .catchall {:try_start_3 .. :try_end_3} :catchall_1
-
-    .line 297
-    nop
-
-    .line 299
-    if-eqz p0, :cond_6
-
-    .line 300
-    invoke-virtual {p0}, Ljava/net/HttpURLConnection;->disconnect()V
-
-    .line 297
-    :cond_6
-    return-object v2
-
-    .line 299
-    :catchall_1
-    move-exception v0
-
-    move-object v1, p0
-
-    :goto_2
-    if-eqz v1, :cond_7
-
-    .line 300
-    invoke-virtual {v1}, Ljava/net/HttpURLConnection;->disconnect()V
-
-    .line 302
-    :cond_7
-    throw v0
+    const/4 v3, 0x0
+    aget-object v3, v2, v3
+    check-cast v3, Ljava/lang/Integer;
+    invoke-virtual {v3}, Ljava/lang/Integer;->intValue()I
+    move-result v3
+    const-string v4, "PROBE-OKHTTP"
+    invoke-static {v4, p0, v3}, Lid/wealthstock/viralclip/MediaDownloader;->logLine(Ljava/lang/String;Ljava/lang/String;I)V
+    const/16 v4, 0xc8
+    const/16 v5, 0xce
+    if-eq v3, v4, :cond_probe_ok
+    if-eq v3, v5, :cond_probe_ok
+    new-instance v4, Lid/wealthstock/viralclip/MediaDownloader$Probe;
+    invoke-direct {v4, v1}, Lid/wealthstock/viralclip/MediaDownloader$Probe;-><init>(Lid/wealthstock/viralclip/MediaDownloader$1;)V
+    iput-boolean v0, v4, Lid/wealthstock/viralclip/MediaDownloader$Probe;->reachable:Z
+    return-object v4
+    :cond_probe_ok
+    new-instance v4, Lid/wealthstock/viralclip/MediaDownloader$Probe;
+    invoke-direct {v4, v1}, Lid/wealthstock/viralclip/MediaDownloader$Probe;-><init>(Lid/wealthstock/viralclip/MediaDownloader$1;)V
+    const/4 v5, 0x1
+    iput-boolean v5, v4, Lid/wealthstock/viralclip/MediaDownloader$Probe;->reachable:Z
+    const/4 v5, 0x0
+    iput-boolean v5, v4, Lid/wealthstock/viralclip/MediaDownloader$Probe;->ranges:Z
+    if-ne v3, v5, :cond_not206
+    :cond_not206
+    const/16 v5, 0xce
+    if-ne v3, v5, :cond_not_range
+    const/4 v5, 0x1
+    iput-boolean v5, v4, Lid/wealthstock/viralclip/MediaDownloader$Probe;->ranges:Z
+    :cond_not_range
+    return-object v4
 .end method
 
 .method private static report(Lid/wealthstock/viralclip/MediaDownloader$Progress;JJILjava/util/concurrent/atomic/AtomicLong;)V
@@ -2352,693 +1617,176 @@
 
 .method private static resumeOnce(Ljava/lang/String;Ljava/io/File;Lid/wealthstock/viralclip/MediaDownloader$Probe;Lid/wealthstock/viralclip/MediaDownloader$Progress;I)Lid/wealthstock/viralclip/MediaDownloader$Fetch;
     .locals 28
-
     .line 526
     new-instance v1, Lid/wealthstock/viralclip/MediaDownloader$Fetch;
-
     const/4 v2, 0x0
-
     invoke-direct {v1, v2}, Lid/wealthstock/viralclip/MediaDownloader$Fetch;-><init>(Lid/wealthstock/viralclip/MediaDownloader$1;)V
-
-    .line 527
-    nop
-
-    .line 528
-    nop
-
-    .line 529
-    nop
-
-    .line 531
     const-wide/16 v3, 0x0
-
     move-object/from16 v0, p2
-
-    :try_start_0
     iget-wide v5, v0, Lid/wealthstock/viralclip/MediaDownloader$Probe;->total:J
-
-    .line 533
-    new-instance v0, Ljava/net/URL;
-
-    move-object/from16 v7, p0
-
-    invoke-direct {v0, v7}, Ljava/net/URL;-><init>(Ljava/lang/String;)V
-
-    invoke-virtual {v0}, Ljava/net/URL;->openConnection()Ljava/net/URLConnection;
-
-    move-result-object v0
-
-    move-object v7, v0
-
-    check-cast v7, Ljava/net/HttpURLConnection;
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_8
-    .catchall {:try_start_0 .. :try_end_0} :catchall_3
-
-    .line 534
-    const/16 v0, 0x4e20
-
-    :try_start_1
-    invoke-virtual {v7, v0}, Ljava/net/HttpURLConnection;->setConnectTimeout(I)V
-
-    .line 535
-    const v0, 0xea60
-
-    invoke-virtual {v7, v0}, Ljava/net/HttpURLConnection;->setReadTimeout(I)V
-
-    .line 536
-    const-string v0, "User-Agent"
-
-    const-string v8, "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
-
-    invoke-virtual {v7, v0, v8}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
-
-    const-string v0, "Accept-Encoding"
-
-    const-string v8, "gzip"
-
-    invoke-virtual {v7, v0, v8}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 537
-    const-string v0, "Accept"
-
-    const-string v8, "*/*"
-
-    invoke-virtual {v7, v0, v8}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
-
-    const-string v0, "Range"
-
-    const-string v8, "bytes=0-"
-
-    invoke-virtual {v7, v0, v8}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 539
-    invoke-virtual {v7}, Ljava/net/HttpURLConnection;->getResponseCode()I
-
-    move-result v0
-
-    const-string v23, "VC-DOWNLOAD"
-
-    move-object/from16 v24, p0
-
-    invoke-static/range {v23 .. v24}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-
-    invoke-static {v0}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
-
-    move-result-object v24
-
-    invoke-static/range {v23 .. v24}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-
-    const-string v8, "FETCH"
-
-    move-object/from16 v15, p0
-
-    invoke-static {v8, v15, v0}, Lid/wealthstock/viralclip/MediaDownloader;->logLine(Ljava/lang/String;Ljava/lang/String;I)V
-
-    const/16 v8, 0x190
-    if-lt v0, v8, :skip_dump_resume
-    invoke-static {v7, v0}, Lid/wealthstock/viralclip/MediaDownloader;->dump403(Ljava/net/HttpURLConnection;I)V
-    :skip_dump_resume
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_7
-    .catchall {:try_start_1 .. :try_end_1} :catchall_2
-
-    .line 540
-    const/16 v8, 0xc8
-
-    if-eq v0, v8, :cond_2
-
-    const/16 v9, 0xce
-
-    if-eq v0, v9, :cond_2
-
-    .line 541
+    new-instance v7, Ljava/util/HashMap;
+    invoke-direct {v7}, Ljava/util/HashMap;-><init>()V
+    const-string v8, "Range"
+    const-string v9, "bytes=0-"
+    invoke-interface {v7, v8, v9}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    const v8, 0x7530
+    invoke-static {p0, v7, v8}, Lid/wealthstock/viralclip/MediaDownloader;->downloadWithOkHttp(Ljava/lang/String;Ljava/util/Map;I)[Ljava/lang/Object;
+    move-result-object v7
+    const/4 v8, 0x0
+    aget-object v8, v7, v8
+    check-cast v8, Ljava/lang/Integer;
+    invoke-virtual {v8}, Ljava/lang/Integer;->intValue()I
+    move-result v8
+    const/4 v9, 0x1
+    aget-object v7, v7, v9
+    check-cast v7, Ljava/io/InputStream;
+    const-string v9, "FETCH-OKHTTP"
+    invoke-static {v9, p0, v8}, Lid/wealthstock/viralclip/MediaDownloader;->logLine(Ljava/lang/String;Ljava/lang/String;I)V
+    const-string v9, "VC-DOWNLOAD"
+    invoke-static {v9, p0}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v8}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
+    move-result-object v10
+    invoke-static {v9, v10}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+    const/16 v9, 0xc8
+    const/16 v10, 0xce
+    if-eq v8, v9, :cond_resume_continue
+    if-eq v8, v10, :cond_resume_continue
     const-wide/16 v11, -0x1
-
-    int-to-long v13, v0
-
+    int-to-long v13, v8
     move-object/from16 v10, p3
-
     move/from16 v15, p4
-
-    :try_start_2
+    :try_start_err
     invoke-interface/range {v10 .. v15}, Lid/wealthstock/viralclip/MediaDownloader$Progress;->onProgress(JJI)V
-
-    .line 542
+    :try_end_err
+    .catch Ljava/lang/Exception; {:try_start_err .. :try_end_err} :catch_err_progress
+    :catch_err_progress
     invoke-virtual/range {p1 .. p1}, Ljava/io/File;->exists()Z
-
-    move-result v0
-
-    if-eqz v0, :cond_0
-
+    move-result v9
+    if-eqz v9, :cond_no_file_err
     invoke-virtual/range {p1 .. p1}, Ljava/io/File;->length()J
-
     move-result-wide v5
-
-    goto :goto_0
-
-    :cond_0
+    goto :goto_err_bytes
+    :cond_no_file_err
     move-wide v5, v3
-
-    :goto_0
+    :goto_err_bytes
     iput-wide v5, v1, Lid/wealthstock/viralclip/MediaDownloader$Fetch;->bytes:J
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_0
-    .catchall {:try_start_2 .. :try_end_2} :catchall_2
-
-    .line 543
-    nop
-
-    .line 605
-    nop
-
-    .line 611
-    invoke-static {v2}, Lid/wealthstock/viralclip/MediaDownloader;->close(Ljava/io/RandomAccessFile;)V
-
-    .line 612
-    if-eqz v7, :cond_1
-
-    .line 613
-    invoke-virtual {v7}, Ljava/net/HttpURLConnection;->disconnect()V
-
-    .line 543
-    :cond_1
+    if-eqz v7, :cond_ret_err
+    :try_start_close_err
+    invoke-virtual {v7}, Ljava/io/InputStream;->close()V
+    :try_end_close_err
+    .catch Ljava/io/IOException; {:try_start_close_err .. :try_end_close_err} :catch_close_err
+    :catch_close_err
+    :cond_ret_err
     return-object v1
-
-    .line 545
-    :cond_2
-    const-wide/16 v9, -0x1
-
-    if-ne v0, v8, :cond_4
-
-    .line 549
-    :try_start_3
-    const-string v0, "Content-Length"
-
-    invoke-virtual {v7, v0}, Ljava/net/HttpURLConnection;->getHeaderField(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v0
-
-    .line 550
-    if-nez v0, :cond_3
-
-    move-wide v5, v9
-
-    goto :goto_1
-
-    :cond_3
-    invoke-virtual {v0}, Ljava/lang/String;->trim()Ljava/lang/String;
-
-    move-result-object v0
-
-    invoke-static {v0}, Lid/wealthstock/viralclip/MediaDownloader;->parseLong(Ljava/lang/String;)J
-
-    move-result-wide v5
-
-    .line 551
-    :goto_1
+    :cond_resume_continue
+    if-ne v8, v9, :cond_not200
     invoke-virtual/range {p1 .. p1}, Ljava/io/File;->delete()Z
-    :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_0
-    .catchall {:try_start_3 .. :try_end_3} :catchall_2
-
-    goto :goto_2
-
-    .line 601
-    :catch_0
-    move-exception v0
-
-    move-object/from16 v14, p1
-
-    move-object v6, v2
-
-    move-wide/from16 v17, v3
-
-    goto/16 :goto_d
-
-    .line 552
-    :cond_4
-    cmp-long v0, v5, v3
-
-    if-gtz v0, :cond_5
-
-    .line 557
-    move-wide v11, v9
-
-    goto :goto_3
-
-    .line 552
-    :cond_5
-    :goto_2
+    :cond_not200
     move-wide v11, v5
-
-    .line 560
-    :goto_3
-    :try_start_4
-    invoke-virtual {v7}, Ljava/net/HttpURLConnection;->getInputStream()Ljava/io/InputStream;
-
-    move-result-object v5
-    :try_end_4
-    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_4} :catch_7
-    .catchall {:try_start_4 .. :try_end_4} :catchall_2
-
-    .line 561
-    :try_start_5
+    if-eqz v7, :cond_no_stream
     new-instance v6, Ljava/io/RandomAccessFile;
-
-    const-string v0, "rw"
-    :try_end_5
-    .catch Ljava/lang/Exception; {:try_start_5 .. :try_end_5} :catch_6
-    .catchall {:try_start_5 .. :try_end_5} :catchall_1
-
-    move-object/from16 v14, p1
-
-    :try_start_6
-    invoke-direct {v6, v14, v0}, Ljava/io/RandomAccessFile;-><init>(Ljava/io/File;Ljava/lang/String;)V
-    :try_end_6
-    .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_6} :catch_5
-    .catchall {:try_start_6 .. :try_end_6} :catchall_1
-
-    .line 562
-    :try_start_7
+    const-string v9, "rw"
+    invoke-direct {v6, p1, v9}, Ljava/io/RandomAccessFile;-><init>(Ljava/io/File;Ljava/lang/String;)V
     invoke-virtual {v6, v3, v4}, Ljava/io/RandomAccessFile;->setLength(J)V
-
-    .line 563
     invoke-virtual {v6, v3, v4}, Ljava/io/RandomAccessFile;->seek(J)V
-
-    .line 564
-    const/high16 v0, 0x40000
-
-    new-array v0, v0, [B
-    :try_end_7
-    .catch Ljava/lang/Exception; {:try_start_7 .. :try_end_7} :catch_4
-    .catchall {:try_start_7 .. :try_end_7} :catchall_0
-
-    .line 566
-    nop
-
-    .line 567
-    nop
-
-    .line 568
+    const/high16 v9, 0x40000
+    new-array v0, v9, [B
     move-wide v8, v3
-
-    move-wide v15, v8
-
-    .line 571
-    :goto_4
+    move-wide v15, v3
+    :goto_resume_loop
     const/4 v10, 0x0
-
-    :try_start_8
-    invoke-virtual {v5, v0}, Ljava/io/InputStream;->read([B)I
-
+    :try_start_read
+    invoke-virtual {v7, v0}, Ljava/io/InputStream;->read([B)I
     move-result v13
-    :try_end_8
-    .catch Ljava/io/IOException; {:try_start_8 .. :try_end_8} :catch_1
-    .catch Ljava/lang/Exception; {:try_start_8 .. :try_end_8} :catch_4
-    .catchall {:try_start_8 .. :try_end_8} :catchall_0
-
-    .line 578
-    nop
-
-    .line 579
-    if-gtz v13, :cond_6
-
-    .line 580
-    move-wide/from16 v17, v3
-
+    :try_end_read
+    .catch Ljava/io/IOException; {:try_start_read .. :try_end_read} :catch_io_resume
+    if-gtz v13, :cond_write_resume
     const/4 v2, 0x1
-
-    goto :goto_7
-
-    .line 582
-    :cond_6
-    :try_start_9
+    goto :goto_resume_done
+    :cond_write_resume
     invoke-virtual {v6, v0, v10, v13}, Ljava/io/RandomAccessFile;->write([BII)V
-    :try_end_9
-    .catch Ljava/lang/Exception; {:try_start_9 .. :try_end_9} :catch_4
-    .catchall {:try_start_9 .. :try_end_9} :catchall_0
-
-    .line 583
-    move-wide/from16 v17, v3
-
-    int-to-long v2, v13
-
-    add-long/2addr v8, v2
-
-    .line 584
-    const-wide v2, 0x100000000L
-
-    cmp-long v2, v8, v2
-
-    if-lez v2, :cond_7
-
-    .line 585
+    int-to-long v9, v13
+    add-long/2addr v8, v9
+    const-wide v9, 0x100000000L
+    cmp-long v9, v8, v9
+    if-lez v9, :cond_check_progress
     const/4 v2, 0x1
-
-    goto :goto_7
-
-    .line 590
-    :cond_7
-    :try_start_a
+    goto :goto_resume_done
+    :cond_check_progress
+    :try_start_progress
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
-
-    move-result-wide v2
-
-    .line 591
-    sub-long v19, v8, v15
-
-    const-wide/32 v21, 0x200000
-
-    cmp-long v4, v19, v21
-
-    if-gez v4, :cond_9
-
-    sub-long v19, v2, v15
-
-    const-wide/16 v21, 0x7d0
-
-    cmp-long v4, v19, v21
-
-    if-lez v4, :cond_8
-
-    goto :goto_5
-
-    :cond_8
-    move-wide v9, v8
-
-    goto :goto_6
-
-    .line 592
-    :cond_9
-    :goto_5
-    nop
-
-    .line 593
+    move-result-wide v9
+    sub-long v12, v8, v15
+    const-wide/32 v18, 0x200000
+    cmp-long v12, v12, v18
+    if-gez v12, :cond_do_progress
+    sub-long v12, v9, v15
+    const-wide/16 v18, 0x7d0
+    cmp-long v12, v12, v18
+    if-lez v12, :cond_no_progress
+    :cond_do_progress
     move/from16 v13, p4
-
     move-wide v9, v8
-
-    move-object/from16 v8, p3
-
-    invoke-interface/range {v8 .. v13}, Lid/wealthstock/viralclip/MediaDownloader$Progress;->onProgress(JJI)V
-
-    move-wide v15, v2
-
-    .line 595
-    :goto_6
-    move-wide v8, v9
-
-    move-wide/from16 v3, v17
-
-    goto :goto_4
-
-    .line 572
-    :catch_1
+    move-object/from16 v10, p3
+    invoke-interface/range {v10 .. v13}, Lid/wealthstock/viralclip/MediaDownloader$Progress;->onProgress(JJI)V
+    move-wide v15, v9
+    invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
+    move-result-wide v15
+    :cond_no_progress
+    :try_end_progress
+    .catch Ljava/lang/Exception; {:try_start_progress .. :try_end_progress} :catch_progress
+    :catch_progress
+    goto :goto_resume_loop
+    :catch_io_resume
     move-exception v0
-
-    move-wide/from16 v17, v3
-
-    .line 576
-    nop
-
-    .line 577
     move v2, v10
-
-    .line 596
-    :goto_7
+    :goto_resume_done
     invoke-virtual {v6, v8, v9}, Ljava/io/RandomAccessFile;->setLength(J)V
-
-    .line 597
     iput-wide v8, v1, Lid/wealthstock/viralclip/MediaDownloader$Fetch;->bytes:J
-
-    .line 598
-    if-eqz v2, :cond_b
-
-    cmp-long v0, v8, v17
-
-    if-lez v0, :cond_b
-
-    cmp-long v0, v11, v17
-
-    if-lez v0, :cond_a
-
+    if-eqz v2, :cond_not_complete
+    cmp-long v0, v8, v3
+    if-lez v0, :cond_not_complete
+    cmp-long v0, v11, v3
+    if-lez v0, :cond_complete_true
     cmp-long v0, v8, v11
-
-    if-ltz v0, :cond_b
-
-    :cond_a
+    if-ltz v0, :cond_not_complete
+    :cond_complete_true
     const/4 v2, 0x1
-
-    goto :goto_8
-
-    :cond_b
-    move v2, v10
-
-    :goto_8
+    goto :goto_complete
+    :cond_not_complete
+    const/4 v2, 0x0
+    :goto_complete
     iput-boolean v2, v1, Lid/wealthstock/viralclip/MediaDownloader$Fetch;->complete:Z
-
-    .line 599
     move/from16 v13, p4
-
     move-wide v9, v8
-
-    move-object/from16 v8, p3
-
-    invoke-interface/range {v8 .. v13}, Lid/wealthstock/viralclip/MediaDownloader$Progress;->onProgress(JJI)V
-    :try_end_a
-    .catch Ljava/lang/Exception; {:try_start_a .. :try_end_a} :catch_3
-    .catchall {:try_start_a .. :try_end_a} :catchall_0
-
-    .line 600
-    nop
-
-    .line 605
-    if-eqz v5, :cond_c
-
-    .line 607
-    :try_start_b
-    invoke-virtual {v5}, Ljava/io/InputStream;->close()V
-    :try_end_b
-    .catch Ljava/io/IOException; {:try_start_b .. :try_end_b} :catch_2
-
-    .line 609
-    goto :goto_9
-
-    .line 608
-    :catch_2
-    move-exception v0
-
-    .line 611
-    :cond_c
-    :goto_9
+    move-object/from16 v10, p3
+    :try_start_final_progress
+    invoke-interface/range {v10 .. v13}, Lid/wealthstock/viralclip/MediaDownloader$Progress;->onProgress(JJI)V
+    :try_end_final_progress
+    .catch Ljava/lang/Exception; {:try_start_final_progress .. :try_end_final_progress} :catch_final_progress
+    :catch_final_progress
+    if-eqz v7, :cond_close_stream
+    :try_start_close
+    invoke-virtual {v7}, Ljava/io/InputStream;->close()V
+    :try_end_close
+    .catch Ljava/io/IOException; {:try_start_close .. :try_end_close} :catch_close_stream
+    :catch_close_stream
+    :cond_close_stream
     invoke-static {v6}, Lid/wealthstock/viralclip/MediaDownloader;->close(Ljava/io/RandomAccessFile;)V
-
-    .line 612
-    if-eqz v7, :cond_d
-
-    .line 613
-    invoke-virtual {v7}, Ljava/net/HttpURLConnection;->disconnect()V
-
-    .line 600
-    :cond_d
     return-object v1
-
-    .line 601
-    :catch_3
-    move-exception v0
-
-    goto :goto_c
-
-    .line 605
-    :catchall_0
-    move-exception v0
-
-    move-object v1, v0
-
-    goto :goto_a
-
-    .line 601
-    :catch_4
-    move-exception v0
-
-    move-wide/from16 v17, v3
-
-    goto :goto_c
-
-    :catch_5
-    move-exception v0
-
-    goto :goto_b
-
-    .line 605
-    :catchall_1
-    move-exception v0
-
-    move-object v1, v0
-
-    move-object v6, v2
-
-    :goto_a
-    move-object v2, v5
-
-    goto :goto_10
-
-    .line 601
-    :catch_6
-    move-exception v0
-
-    move-object/from16 v14, p1
-
-    :goto_b
-    move-wide/from16 v17, v3
-
-    move-object v6, v2
-
-    :goto_c
-    move-object v2, v5
-
-    goto :goto_d
-
-    .line 605
-    :catchall_2
-    move-exception v0
-
-    move-object v1, v0
-
-    move-object v6, v2
-
-    goto :goto_10
-
-    .line 601
-    :catch_7
-    move-exception v0
-
-    move-object/from16 v14, p1
-
-    move-wide/from16 v17, v3
-
-    move-object v6, v2
-
-    goto :goto_d
-
-    .line 605
-    :catchall_3
-    move-exception v0
-
-    move-object v1, v0
-
-    move-object v6, v2
-
-    move-object v7, v6
-
-    goto :goto_10
-
-    .line 601
-    :catch_8
-    move-exception v0
-
-    move-object/from16 v14, p1
-
-    move-wide/from16 v17, v3
-
-    move-object v6, v2
-
-    move-object v7, v6
-
-    .line 602
-    :goto_d
-    :try_start_c
-    invoke-virtual {v14}, Ljava/io/File;->exists()Z
-
-    move-result v0
-
-    if-eqz v0, :cond_e
-
-    invoke-virtual {v14}, Ljava/io/File;->length()J
-
-    move-result-wide v3
-
-    goto :goto_e
-
-    :cond_e
-    move-wide/from16 v3, v17
-
-    :goto_e
-    iput-wide v3, v1, Lid/wealthstock/viralclip/MediaDownloader$Fetch;->bytes:J
-    :try_end_c
-    .catchall {:try_start_c .. :try_end_c} :catchall_4
-
-    .line 603
-    nop
-
-    .line 605
-    if-eqz v2, :cond_f
-
-    .line 607
-    :try_start_d
-    invoke-virtual {v2}, Ljava/io/InputStream;->close()V
-    :try_end_d
-    .catch Ljava/io/IOException; {:try_start_d .. :try_end_d} :catch_9
-
-    .line 609
-    goto :goto_f
-
-    .line 608
-    :catch_9
-    move-exception v0
-
-    .line 611
-    :cond_f
-    :goto_f
-    invoke-static {v6}, Lid/wealthstock/viralclip/MediaDownloader;->close(Ljava/io/RandomAccessFile;)V
-
-    .line 612
-    if-eqz v7, :cond_10
-
-    .line 613
-    invoke-virtual {v7}, Ljava/net/HttpURLConnection;->disconnect()V
-
-    .line 603
-    :cond_10
+    :cond_no_stream
+    const-wide/16 v5, 0x0
+    iput-wide v5, v1, Lid/wealthstock/viralclip/MediaDownloader$Fetch;->bytes:J
+    const/4 v2, 0x0
+    iput-boolean v2, v1, Lid/wealthstock/viralclip/MediaDownloader$Fetch;->complete:Z
+    if-eqz v7, :cond_ret_no_stream
+    :try_start_close2
+    invoke-virtual {v7}, Ljava/io/InputStream;->close()V
+    :try_end_close2
+    .catch Ljava/io/IOException; {:try_start_close2 .. :try_end_close2} :catch_close2
+    :catch_close2
+    :cond_ret_no_stream
     return-object v1
-
-    .line 605
-    :catchall_4
-    move-exception v0
-
-    move-object v1, v0
-
-    :goto_10
-    if-eqz v2, :cond_11
-
-    .line 607
-    :try_start_e
-    invoke-virtual {v2}, Ljava/io/InputStream;->close()V
-    :try_end_e
-    .catch Ljava/io/IOException; {:try_start_e .. :try_end_e} :catch_a
-
-    .line 609
-    goto :goto_11
-
-    .line 608
-    :catch_a
-    move-exception v0
-
-    .line 611
-    :cond_11
-    :goto_11
-    invoke-static {v6}, Lid/wealthstock/viralclip/MediaDownloader;->close(Ljava/io/RandomAccessFile;)V
-
-    .line 612
-    if-eqz v7, :cond_12
-
-    .line 613
-    invoke-virtual {v7}, Ljava/net/HttpURLConnection;->disconnect()V
-
-    .line 615
-    :cond_12
-    throw v1
 .end method
 
 .method private static saveCompleted(Ljava/io/File;[Z)V

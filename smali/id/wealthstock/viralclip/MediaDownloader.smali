@@ -1616,7 +1616,7 @@
 .end method
 
 .method private static resumeOnce(Ljava/lang/String;Ljava/io/File;Lid/wealthstock/viralclip/MediaDownloader$Probe;Lid/wealthstock/viralclip/MediaDownloader$Progress;I)Lid/wealthstock/viralclip/MediaDownloader$Fetch;
-    .locals 28
+    .locals 29
     .line 526
     new-instance v1, Lid/wealthstock/viralclip/MediaDownloader$Fetch;
     const/4 v2, 0x0

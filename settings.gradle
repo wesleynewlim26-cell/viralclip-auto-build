@@ -1,0 +1,2 @@
+rootProject.name = 'viralclip-auto-build'
+include ':app'

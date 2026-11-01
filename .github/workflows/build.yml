@@ -19,6 +19,14 @@ jobs:
           java-version: 17
           distribution: temurin
       
+      - name: Install Gradle 8.5
+        run: |
+          cd /tmp
+          curl -sL -o gradle-8.5-bin.zip https://services.gradle.org/distributions/gradle-8.5-bin.zip
+          unzip -q gradle-8.5-bin.zip
+          echo "GRADLE_HOME=/tmp/gradle-8.5" >> $GITHUB_ENV
+          echo "/tmp/gradle-8.5/bin" >> $GITHUB_PATH
+      
       - name: Cache Gradle packages
         uses: actions/cache@v4
         with:
@@ -30,7 +38,7 @@ jobs:
             ${{ runner.os }}-gradle-
       
       - name: Build Debug APK
-        run: ./gradlew assembleDebug --no-daemon
+        run: gradle assembleDebug --no-daemon
       
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4

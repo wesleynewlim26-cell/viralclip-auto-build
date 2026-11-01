@@ -34,7 +34,6 @@ repositories {
     google()
     mavenCentral()
     maven { url 'https://jitpack.io' }
-    maven { url 'https://maven.arthenica.com/releases/' }
 }
 
 dependencies {
@@ -45,5 +44,5 @@ dependencies {
     implementation 'androidx.activity:activity-ktx:1.8.2'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.20'
     implementation 'com.github.yausername:youtubedl-android:0.17.4'
-    implementation 'com.arthenica:ffmpeg-kit-full-gpl:8.1.9'
+    implementation 'com.arthenica.ffmpegkit:ffmpeg-kit-full-gpl:8.1.9'
 }

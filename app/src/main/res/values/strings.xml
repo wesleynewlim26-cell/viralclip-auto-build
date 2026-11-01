@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">ViralClip</string>
+    
+    <!-- UI Labels -->
+    <string name="url_hint">Masukkan URL YouTube (youtube.com/watch?v=... atau youtu.be/...)</string>
+    <string name="quality_label">Kualitas Video</string>
+    <string name="range_label">Durasi (Trim)</string>
+    <string name="btn_extract">EKSTRAK VIDEO</string>
+    <string name="btn_cancel">BATALKAN</string>
+    <string name="server_starting">● Memulai server...</string>
+    <string name="server_ready">● Server siap (Port 5000)</string>
+    <string name="status_ready">Siap mengunduh</string>
+    
+    <!-- Quality Options -->
+    <string-array name="quality_options">
+        <item>720p</item>
+        <item>1080p</item>
+        <item>4k</item>
+    </string-array>
+    
+    <!-- Error Messages (used in Java) -->
+    <string name="err_age_restricted">Video dibatasi usia (18+). Aplikasi ini hanya mendownload video publik non-age-restricted untuk kepatuhan kebijakan dan keamanan akun Anda.</string>
+    <string name="err_private">Video ini privat, dihapus, atau tidak tersedia. Hanya video publik yang bisa diunduh.</string>
+    <string name="err_geo_blocked">Video ini tidak tersedia di wilayah Anda. Coba gunakan VPN atau pilih video lain.</string>
+    <string name="err_format_unavailable">Kualitas yang dipilih tidak tersedia untuk video ini. Aplikasi akan mencoba kualitas lebih rendah secara otomatis.</string>
+    <string name="err_network">Gagal terhubung ke YouTube. Periksa koneksi internet dan coba lagi.</string>
+    <string name="err_live_stream">Live streaming sedang berlangsung tidak bisa diunduh. Tunggu hingga selesai dan jadi replay.</string>
+    <string name="err_unknown">Terjadi kesalahan tidak diketahui. Silakan coba lagi.</string>
+    
+    <!-- Success -->
+    <string name="success_title">Download Selesai</string>
+    <string name="success_message">Video tersimpan di folder Download/ViralClip/</string>
+    
+    <!-- Disclaimer -->
+    <string name="disclaimer">Aplikasi ini hanya mendukung video YouTube publik (non-age-restricted). Video privat, age-restricted (18+), geo-blocked, dan live streaming tidak didukung.</string>
+</resources>

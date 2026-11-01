@@ -1,0 +1,2 @@
+Error occurred during initialization of VM
+Failed to mark memory page as executable - check if grsecurity/PaX is enabled

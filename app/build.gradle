@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace 'id.wealthstock.viralclip'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId 'id.wealthstock.viralclip'

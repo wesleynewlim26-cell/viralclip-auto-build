@@ -2,11 +2,12 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://chaquo.com/maven' }
+        maven { url 'https://jitpack.io' }
+        maven { url 'https://maven.arthenica.com/releases/' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.9.0'
-        classpath 'com.chaquo.python:gradle:15.0.1'
+        classpath 'com.android.tools.build:gradle:8.5.0'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.20'
     }
 }
 
@@ -14,7 +15,8 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://chaquo.com/maven' }
+        maven { url 'https://jitpack.io' }
+        maven { url 'https://maven.arthenica.com/releases/' }
     }
 }
 
